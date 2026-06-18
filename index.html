@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Chat to Code · The 3 Levels of AI · Atmit Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Atmit Labs brand palette */
+  --ink:        #06201d;
+  --ink-2:      #0a2c27;
+  --ink-3:      #103a33;
+  --blue:       #27aae1;
+  --blue-deep:  #1867a5;
+  --green:      #0ad27c;
+  --teal:       #05927d;
+  --teal-ink:   #066b5c;
+  --gray:       #41504c;
+  --gray-soft:  #5d6b67;
+  --amber:      #e89a2c;
+  --cream:      #f6faf8;
+  --cream-2:    #edf3f1;
+  --white:      #ffffff;
+  --line:       rgba(255,255,255,0.12);
+  --line-2:     rgba(255,255,255,0.07);
+  --line-dark:  rgba(12,42,37,0.14);
+  --grad:       linear-gradient(120deg, var(--blue) 0%, var(--green) 100%);
+  --grad-soft:  linear-gradient(120deg, rgba(39,170,225,0.16) 0%, rgba(10,210,124,0.16) 100%);
+  --ease:       cubic-bezier(.22,.61,.36,1);
+  /* z-scale */
+  --z-nav: 100; --z-indicator: 90;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:18px;}
+body{
+  font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+  color:var(--gray);background:var(--ink);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4,.display{font-family:'Poppins',sans-serif;text-wrap:balance;}
+p{text-wrap:pretty;}
+
+/* ── Nav ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:var(--z-nav);height:62px;padding:0 2.2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,32,29,0.80);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;
+}
+nav.scrolled{border-bottom-color:var(--line);}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
+.nav-logo img{height:30px;width:auto;display:block;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(255,255,255,0.52);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.present-btn{
+  padding:.5rem 1.25rem;background:var(--grad);color:#04211b;border:none;border-radius:100px;
+  font-size:.78rem;font-weight:700;cursor:pointer;transition:transform .12s var(--ease),filter .2s;
+  white-space:nowrap;font-family:'Poppins',sans-serif;
+}
+.present-btn:hover{filter:brightness(1.08);}
+.present-btn:active{transform:scale(.97);}
+
+/* ── Slide base ── */
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:6.5rem 3rem 4rem;position:relative;}
+.slide-inner{max-width:1180px;margin:0 auto;width:100%;}
+.slide.light{background:var(--cream);color:var(--gray);}
+.slide.light.warm{background:var(--cream-2);}
+.slide.dark{background:var(--ink);color:rgba(255,255,255,0.86);}
+.slide.dark.alt{background:linear-gradient(165deg,var(--ink) 0%,var(--ink-2) 100%);}
+
+.section-title{font-size:clamp(2rem,4.2vw,3.05rem);font-weight:700;line-height:1.07;letter-spacing:-.025em;margin-bottom:1.1rem;}
+.light .section-title{color:#0c2a25;}
+.section-sub{font-size:1.08rem;line-height:1.6;max-width:68ch;opacity:.85;}
+.dark .section-sub{opacity:.76;}
+
+/* accent words (solid, not gradient) */
+.accent{color:var(--teal-ink);}
+.dark .accent,.divider .accent,.demo .accent,.close .accent,.hero .accent{color:var(--green);}
+
+/* ── Motion ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.visible{opacity:1;transform:none;}
+.reveal.from-left{transform:translateX(-26px);}
+.reveal.from-left.visible{transform:none;}
+.reveal.zoom{transform:scale(.94);}
+.reveal.zoom.visible{transform:none;}
+.d1{transition-delay:.07s;}.d2{transition-delay:.14s;}.d3{transition-delay:.21s;}
+.d4{transition-delay:.28s;}.d5{transition-delay:.35s;}.d6{transition-delay:.42s;}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1!important;transform:none!important;transition:none!important;}
+  html{scroll-behavior:auto;}
+}
+
+/* ── 1 · Title ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;padding:5rem 3rem;position:relative;overflow:hidden;color:var(--white);
+  background:
+    radial-gradient(ellipse 68% 58% at 84% 16%, rgba(39,170,225,0.24) 0%, transparent 60%),
+    radial-gradient(ellipse 64% 54% at 10% 90%, rgba(10,210,124,0.20) 0%, transparent 62%),
+    linear-gradient(165deg,#041a17 0%,#06201d 50%,#0a2c27 100%);
+}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0);
+  background-size:40px 40px;mask-image:radial-gradient(ellipse 80% 80% at 50% 45%,#000 30%,transparent 75%);}
+.hero-inner{max-width:1180px;margin:0 auto;width:100%;position:relative;z-index:2;display:grid;grid-template-columns:1.5fr .85fr;gap:3.5rem;align-items:center;}
+.kicker-pill{display:inline-flex;align-items:center;gap:.6rem;font-size:.76rem;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,0.82);border:1px solid var(--line);padding:.45rem .95rem;border-radius:100px;background:rgba(255,255,255,0.03);margin-bottom:1.7rem;}
+.kicker-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+.hero h1{font-size:clamp(2.7rem,5.4vw,4.4rem);font-weight:700;line-height:1.02;letter-spacing:-.03em;margin-bottom:1.3rem;}
+.hero .lede{font-size:1.22rem;line-height:1.55;color:rgba(255,255,255,0.78);max-width:54ch;margin-bottom:2.2rem;}
+.hero-presenter{display:flex;align-items:center;gap:1rem;}
+.hero-presenter img{width:62px;height:62px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.18);}
+.hero-presenter .pname{font-family:'Poppins';font-weight:600;font-size:1.08rem;color:var(--white);}
+.hero-presenter .prole{font-size:.88rem;color:rgba(255,255,255,0.62);}
+.hero-art{display:flex;justify-content:center;align-items:center;}
+.hero-art img{width:100%;max-width:280px;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.45));}
+.hero-hint{margin-top:1.9rem;font-size:.82rem;color:rgba(255,255,255,0.45);}
+.hero-hint b{color:var(--green);font-weight:600;}
+
+/* ── 2 · About ── */
+.about-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:3.2rem;align-items:center;}
+.about-photo{position:relative;}
+.about-photo img{width:100%;border-radius:20px;display:block;box-shadow:0 24px 60px rgba(6,32,29,0.22);}
+.about-photo .ribbon{position:absolute;bottom:-14px;left:-14px;background:var(--grad);color:#04211b;font-family:'Poppins';font-weight:700;font-size:.82rem;padding:.55rem 1rem;border-radius:12px;box-shadow:0 12px 28px rgba(6,32,29,0.28);}
+.about-lead{font-size:clamp(1.5rem,2.6vw,1.9rem);line-height:1.32;font-family:'Poppins';font-weight:600;color:#0c2a25;margin-bottom:1.3rem;letter-spacing:-.01em;}
+.about-body{font-size:1.05rem;line-height:1.65;margin-bottom:1.8rem;max-width:60ch;}
+.cred-line{display:flex;gap:2rem;flex-wrap:wrap;border-top:2px solid var(--line-dark);padding-top:1.3rem;}
+.cred-line span{font-size:1rem;color:var(--gray-soft);}
+.cred-line b{font-family:'Poppins';color:var(--teal-ink);font-weight:700;}
+
+/* ── 3 · Agenda ── */
+.agenda{display:flex;flex-direction:column;margin-top:1.6rem;}
+.agenda-row{display:grid;grid-template-columns:54px 1fr;gap:1.2rem;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--line-2);}
+.agenda-row:last-child{border-bottom:none;}
+.agenda-row .n{font-family:'JetBrains Mono';font-weight:600;font-size:1rem;color:var(--green);}
+.agenda-row .t{font-family:'Poppins';font-weight:600;font-size:1.18rem;color:var(--white);}
+.agenda-row .d{font-size:.92rem;color:rgba(255,255,255,0.58);margin-top:.1rem;}
+
+/* ── 4/5 · Intention + Bismillah ── */
+.lead-statement{font-size:clamp(2.1rem,4.6vw,3.2rem);font-family:'Poppins';font-weight:700;line-height:1.12;letter-spacing:-.025em;color:var(--white);margin-bottom:1.6rem;max-width:18ch;}
+.prompt-q{font-size:1.32rem;line-height:1.5;font-family:'Poppins';font-weight:500;max-width:64ch;color:rgba(255,255,255,0.9);margin-bottom:1.8rem;}
+.intention-note{font-size:1.12rem;line-height:1.62;max-width:62ch;color:rgba(255,255,255,0.74);border-left:1px solid var(--green);padding-left:1.4rem;}
+.intention-note b{color:var(--white);font-weight:600;}
+
+.bismillah{background:radial-gradient(ellipse 58% 58% at 50% 38%, rgba(10,210,124,0.15) 0%, transparent 65%),linear-gradient(165deg,#041a17 0%,#06201d 60%);}
+.center-stage{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.arabic{font-size:clamp(2.6rem,6.5vw,4.6rem);line-height:1.5;font-weight:600;color:var(--white);margin-bottom:1.5rem;direction:rtl;font-family:'Poppins';}
+.translit{font-style:italic;font-size:1.2rem;color:var(--green);margin-bottom:.7rem;}
+.translation{font-size:1.08rem;color:rgba(255,255,255,0.72);max-width:56ch;line-height:1.55;}
+.bismillah .small-label{font-size:.95rem;color:var(--green);font-weight:600;margin-bottom:2rem;letter-spacing:.02em;}
+
+/* ── 6 · Principles (numbered list, no side-stripe) ── */
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 3rem;margin-top:2rem;}
+.pr{display:flex;gap:1.2rem;align-items:flex-start;border-top:2px solid var(--line-dark);padding-top:1.2rem;}
+.pr .pr-n{font-family:'Poppins';font-weight:800;font-size:1.9rem;color:var(--teal-ink);line-height:.9;flex-shrink:0;}
+.pr h3{font-size:1.22rem;font-weight:700;color:#0c2a25;margin-bottom:.45rem;line-height:1.2;}
+.pr p{font-size:.96rem;line-height:1.55;color:var(--gray-soft);}
+
+/* ── 7 · The map / spectrum ── */
+.spectrum{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:2.2rem;border:1px solid var(--line);border-radius:18px;overflow:hidden;}
+.lvl-col{padding:1.8rem 1.7rem;border-left:1px solid var(--line);position:relative;transition:background .3s var(--ease);}
+.lvl-col:first-child{border-left:none;}
+.lvl-col:hover{background:rgba(255,255,255,0.03);}
+.lvl-col .tag{font-family:'JetBrains Mono';font-weight:600;font-size:.74rem;letter-spacing:.04em;color:var(--green);text-transform:uppercase;margin-bottom:1rem;}
+.lvl-col .verb{font-family:'Poppins';font-weight:700;font-size:1.8rem;color:var(--white);margin-bottom:.25rem;}
+.lvl-col .prod{font-size:.92rem;color:var(--blue);font-weight:600;margin-bottom:1rem;}
+.lvl-col .desc{font-size:.94rem;line-height:1.55;color:rgba(255,255,255,0.72);margin-bottom:1rem;}
+.lvl-col .does{font-size:.86rem;color:rgba(255,255,255,0.58);border-top:1px solid var(--line);padding-top:.9rem;}
+.lvl-col .does b{color:var(--white);font-weight:600;}
+.spectrum-axis{display:flex;align-items:center;gap:1rem;margin-top:1.4rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,0.5);}
+.spectrum-axis .bar{flex:1;height:3px;background:var(--grad);border-radius:3px;}
+.spectrum-axis .hi{color:var(--green);}
+
+/* ── Level dividers ── */
+.divider{background:linear-gradient(160deg,#041a17 0%,#06201d 55%,#0a2c27 100%);position:relative;overflow:hidden;}
+.divider::before{content:"";position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:520px;height:520px;border-radius:50%;background:var(--grad-soft);filter:blur(24px);opacity:.65;}
+.divider-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;}
+.divider .lvl-kicker{font-family:'JetBrains Mono';font-weight:600;font-size:1rem;letter-spacing:.06em;color:var(--green);margin-bottom:1rem;}
+.divider .big{font-size:clamp(3rem,7.2vw,5.4rem);font-weight:700;line-height:1;letter-spacing:-.035em;color:var(--white);margin-bottom:1.1rem;}
+.divider .sub{font-size:1.28rem;color:rgba(255,255,255,0.78);max-width:62ch;line-height:1.5;}
+.divider .trigger{margin-top:2rem;display:flex;align-items:flex-start;gap:1rem;max-width:66ch;border-top:1px solid var(--line);padding-top:1.3rem;}
+.divider .trigger .k{font-family:'Poppins';font-weight:700;color:var(--green);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;padding-top:.2rem;}
+.divider .trigger .v{font-size:1.02rem;color:rgba(255,255,255,0.85);line-height:1.5;}
+
+/* ── Feature list (icon rows) ── */
+.feature-list{display:flex;flex-direction:column;gap:0;margin-top:1.5rem;}
+.feature{border-top:1px solid var(--line-dark);padding:1.05rem 0;}
+.dark .feature{border-top-color:var(--line);}
+.feature .ft{font-family:'Poppins';font-weight:600;font-size:1.1rem;color:#0c2a25;margin-bottom:.25rem;}
+.dark .feature .ft{color:var(--white);}
+.feature .fd{font-size:.96rem;line-height:1.55;color:var(--gray-soft);max-width:64ch;}
+.dark .feature .fd{color:rgba(255,255,255,0.66);}
+
+/* ── Definition list (building blocks) ── */
+.defs{margin-top:1.5rem;}
+.def{display:grid;grid-template-columns:240px 1fr;gap:2.2rem;padding:1.2rem 0;border-bottom:1px solid var(--line-dark);}
+.def:first-child{border-top:1px solid var(--line-dark);}
+.def dt{font-family:'Poppins';font-weight:700;font-size:1.22rem;color:#0c2a25;display:flex;align-items:center;gap:.6rem;}
+.def dt .dot{width:9px;height:9px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+.def dd{font-size:1rem;line-height:1.55;color:var(--gray-soft);}
+.bridge-note{margin-top:1.7rem;font-size:1.02rem;line-height:1.55;color:var(--teal-ink);font-weight:500;max-width:70ch;}
+.bridge-note b{color:#0c2a25;}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:2.8rem;margin-top:1.6rem;}
+.duo-h{font-family:'Poppins';font-weight:700;font-size:1.18rem;color:#0c2a25;margin-bottom:.3rem;}
+.duo .defs{margin-top:0;}
+.duo .def{grid-template-columns:1fr;gap:.2rem;padding:.85rem 0;}
+.duo .def:first-child{border-top:none;}
+.duo .def dt{font-size:1.05rem;}
+.duo .def dd{font-size:.93rem;line-height:1.5;}
+
+/* ── Terminal-style concepts (Code section) ── */
+.terminal{margin-top:1.6rem;background:#04211b;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+.terminal-bar{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-bottom:1px solid var(--line-2);}
+.terminal-bar .tdot{width:11px;height:11px;border-radius:50%;}
+.terminal-bar .r{background:#ff5f57;}.terminal-bar .y{background:#febc2e;}.terminal-bar .g{background:#28c840;}
+.terminal-bar .ttl{margin-left:.6rem;font-family:'JetBrains Mono';font-size:.78rem;color:rgba(255,255,255,0.45);}
+.terminal-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.tline{padding:1.2rem 1.4rem;border-top:1px solid var(--line-2);border-left:1px solid var(--line-2);}
+.terminal-body .tline:nth-child(-n+2){border-top:none;}
+.terminal-body .tline:nth-child(odd){border-left:none;}
+.tline .cmd{font-family:'JetBrains Mono';font-weight:600;font-size:1.02rem;color:var(--green);margin-bottom:.5rem;}
+.tline .cmd .prompt{color:var(--blue);}
+.tline p{font-size:.94rem;line-height:1.5;color:rgba(255,255,255,0.7);}
+
+/* ── vs comparison ── */
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1.6rem;align-items:stretch;margin-top:1.8rem;}
+.vs-card{border:1px solid var(--line-dark);border-radius:16px;padding:1.5rem 1.6rem;background:var(--white);}
+.dark .vs-card{background:rgba(255,255,255,0.03);border-color:var(--line);}
+.vs-card .vh{font-family:'JetBrains Mono';font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--teal-ink);margin-bottom:.6rem;}
+.dark .vs-card .vh{color:var(--green);}
+.vs-card h4{font-family:'Poppins';font-weight:700;font-size:1.18rem;color:#0c2a25;margin-bottom:.5rem;}
+.dark .vs-card h4{color:var(--white);}
+.vs-card p{font-size:.96rem;line-height:1.55;color:var(--gray-soft);}
+.dark .vs-card p{color:rgba(255,255,255,0.68);}
+.vs-mid{display:flex;align-items:center;font-family:'Poppins';font-weight:800;color:var(--blue);font-size:1.4rem;}
+
+.callout{margin-top:1.8rem;background:var(--grad-soft);border:1px solid rgba(10,210,124,0.28);border-radius:14px;padding:1.1rem 1.4rem;font-size:1.02rem;line-height:1.55;color:#0c2a25;display:flex;gap:.85rem;align-items:flex-start;}
+.dark .callout{color:rgba(255,255,255,0.9);}
+.callout .ci{font-size:1.2rem;flex-shrink:0;}
+.callout b{color:var(--teal-ink);}
+.dark .callout b{color:var(--green);}
+
+/* ── Demo launchpad ── */
+.demo{background:linear-gradient(160deg,#041a17 0%,#06201d 55%,#0a2c27 100%);position:relative;overflow:hidden;}
+.demo::before{content:"";position:absolute;left:-10%;bottom:-22%;width:480px;height:480px;border-radius:50%;background:var(--grad-soft);filter:blur(32px);opacity:.55;}
+.demo-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;}
+.demo-badge{display:inline-flex;align-items:center;gap:.6rem;font-family:'JetBrains Mono';font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#04211b;background:var(--grad);padding:.5rem 1.1rem;border-radius:100px;margin-bottom:1.4rem;}
+.demo-badge .pulse{width:9px;height:9px;border-radius:50%;background:#04211b;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.2;}}
+@media (prefers-reduced-motion: reduce){.demo-badge .pulse{animation:none;}}
+.demo h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:.7rem;}
+.demo .demo-sub{font-size:1.12rem;color:rgba(255,255,255,0.74);max-width:66ch;margin-bottom:2rem;line-height:1.5;}
+.demo-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--line);}
+.demo-col{padding:1.5rem 1.6rem;border-left:1px solid var(--line);}
+.demo-col:first-child{border-left:none;padding-left:0;}
+.demo-col:last-child{padding-right:0;}
+.demo-col .h{font-family:'JetBrains Mono';font-weight:600;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin-bottom:.9rem;}
+.demo-col p{font-size:.96rem;line-height:1.55;color:rgba(255,255,255,0.82);}
+.demo-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.demo-col li{font-size:.94rem;line-height:1.45;color:rgba(255,255,255,0.8);padding-left:1.2rem;position:relative;}
+.demo-col li::before{content:"›";position:absolute;left:0;color:var(--green);font-weight:700;}
+
+/* ── Guardrails (divided columns) ── */
+.guards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:1.6rem;}
+.guards .g{padding:0 1.9rem;border-left:1px solid var(--line);}
+.guards .g:first-child{border-left:none;padding-left:0;}
+.guards .g:last-child{padding-right:0;}
+.guards .g h4{font-family:'Poppins';font-weight:700;font-size:1.2rem;color:var(--white);margin-bottom:.6rem;}
+.guards .g p{font-size:.95rem;line-height:1.55;color:rgba(255,255,255,0.7);}
+.guards .g .rail{margin-top:.9rem;font-size:.84rem;color:var(--green);font-weight:600;}
+.autonomy-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.8rem;}
+.autonomy-strip .seg{padding:.75rem 1rem;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid var(--line);font-size:.88rem;color:rgba(255,255,255,0.62);}
+.autonomy-strip .seg b{color:var(--white);font-family:'Poppins';display:block;margin-bottom:.15rem;}
+
+/* ── Recap (progression strip) ── */
+.recap-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4rem;margin-top:1.8rem;}
+.recap-item{border-top:2px solid var(--line);padding-top:1.1rem;}
+.recap-item .rn{font-family:'JetBrains Mono';font-weight:600;font-size:.78rem;color:var(--green);margin-bottom:.5rem;letter-spacing:.04em;}
+.recap-item .rv{font-family:'Poppins';font-weight:700;font-size:1.5rem;color:var(--white);margin-bottom:.4rem;}
+.recap-item .rd{font-size:.95rem;line-height:1.5;color:rgba(255,255,255,0.7);}
+.recap-foot{margin-top:2.2rem;font-size:1.3rem;font-family:'Poppins';font-weight:500;color:rgba(255,255,255,0.88);}
+
+/* ── Close ── */
+.close{text-align:center;background:
+  radial-gradient(ellipse 68% 58% at 18% 18%, rgba(39,170,225,0.20) 0%, transparent 60%),
+  radial-gradient(ellipse 64% 54% at 86% 88%, rgba(10,210,124,0.18) 0%, transparent 62%),
+  linear-gradient(165deg,#041a17 0%,#06201d 50%,#0a2c27 100%);}
+.close img.logo{width:240px;margin-bottom:2rem;}
+.close h2{font-size:clamp(2.3rem,4.8vw,3.5rem);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em;}
+.close .lede{font-size:1.2rem;color:rgba(255,255,255,0.78);max-width:60ch;margin:0 auto 2.4rem;line-height:1.5;}
+.cta-row{display:flex;gap:0;justify-content:center;flex-wrap:wrap;margin-bottom:2.2rem;border-top:1px solid var(--line);max-width:760px;margin-left:auto;margin-right:auto;}
+.cta-item{padding:1.3rem 1.8rem;border-left:1px solid var(--line);min-width:220px;}
+.cta-item:first-child{border-left:none;}
+.cta-item .ch{font-family:'JetBrains Mono';font-weight:600;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem;}
+.cta-item .cv{font-size:1.04rem;color:var(--white);font-weight:500;}
+.close .tagline{font-style:italic;color:var(--blue);font-size:1.08rem;}
+
+/* ── footer / indicator ── */
+footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:1.6rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;border-top:1px solid var(--line);flex-wrap:wrap;gap:.6rem;}
+footer strong{color:var(--green);}
+.slide-indicator{position:fixed;bottom:1.3rem;right:1.5rem;z-index:var(--z-indicator);background:rgba(6,32,29,0.85);color:rgba(255,255,255,0.7);font-size:.78rem;font-weight:600;padding:.4rem .85rem;border-radius:100px;border:1px solid var(--line);backdrop-filter:blur(8px);font-family:'JetBrains Mono';}
+
+/* ── Present mode ── */
+html.present-mode{scroll-behavior:auto;}
+html.present-mode body{overflow:hidden;}
+html.present-mode nav{border-bottom-color:transparent;box-shadow:none!important;}
+html.present-mode .slide,html.present-mode .hero{height:100vh;min-height:100vh;overflow:hidden;padding-top:5rem;padding-bottom:3rem;display:flex;flex-direction:column;justify-content:center;}
+html.present-mode .reveal{opacity:1!important;transform:none!important;}
+html.present-mode .nav-links a{opacity:.4;}
+html.present-mode .nav-links a.active{opacity:1;}
+html.present-mode footer{display:none;}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .hero-inner,.about-grid{grid-template-columns:1fr;}
+  .hero-art{display:none;}
+  .spectrum,.demo-cols,.guards,.autonomy-strip,.recap-strip,.principles,.terminal-body,.cta-row,.duo{grid-template-columns:1fr;}
+  .vs-grid{grid-template-columns:1fr;}.vs-mid{justify-content:center;}
+  .def{grid-template-columns:1fr;gap:.4rem;}
+  .lvl-col,.demo-col,.guards .g,.cta-item{border-left:none;padding-left:0;}
+  .tline{border-left:none;}
+  .nav-links{display:none;}
+  .slide{padding:5.5rem 1.5rem 3rem;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="#top"><img src="assets/atmit-logo-onDark.png" alt="Atmit Labs"></a>
+  <ul class="nav-links">
+    <li><a href="#intention">Intentions</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#map">The 3 Levels</a></li>
+    <li><a href="#level1">Chat</a></li>
+    <li><a href="#level2">Cowork</a></li>
+    <li><a href="#level3">Code</a></li>
+    <li><a href="#recap">Recap</a></li>
+  </ul>
+  <button class="present-btn" id="presentBtn" onclick="togglePresent()">Present</button>
+</nav>
+
+<!-- 1 · TITLE -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <span class="kicker-pill"><span class="dot"></span>Texas AI Tech Summit · Workshop</span>
+      <h1>From Chat to Code</h1>
+      <p class="lede">The three levels of AI that actually matter, and how to climb them. A hands-on journey through the Claude ecosystem.</p>
+      <div class="hero-presenter">
+        <img src="assets/headshot.jpeg" alt="Ayman Kotob">
+        <div>
+          <div class="pname">Ayman Kotob</div>
+          <div class="prole">Founder, Atmit Labs · <em>Automation and tech, made intuitive</em></div>
+        </div>
+      </div>
+      <div class="hero-hint">Press <b>P</b> to present · use ←/→ to navigate</div>
+    </div>
+    <div class="hero-art"><img src="assets/atmit-logo-vertical-onDark.png" alt="Atmit Labs logo"></div>
+  </div>
+</header>
+
+<!-- 2 · ABOUT -->
+<section class="slide light" id="about">
+  <div class="slide-inner">
+    <div class="about-grid">
+      <div class="about-photo reveal zoom">
+        <img src="assets/headshot.jpeg" alt="Ayman Kotob">
+        <span class="ribbon">Atmit Labs</span>
+      </div>
+      <div>
+        <p class="about-lead reveal d1">I help lean teams turn AI from a buzzword into measurable ROI.</p>
+        <p class="about-body reveal d2">I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and habits that give small teams the leverage of much bigger ones.</p>
+        <div class="cred-line reveal d3">
+          <span><b>One</b> framework you'll keep</span>
+          <span><b>Zero</b> code required from you</span>
+          <span><b>Three</b> live demos today</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · INTENTION -->
+<section class="slide dark" id="intention">
+  <div class="slide-inner">
+    <h2 class="lead-statement reveal">AI is the <span class="accent">means</span>, not the end.</h2>
+    <p class="prompt-q reveal d1">Quick gut-check: why are you really here today? What outcome are you hoping AI helps you reach?</p>
+    <p class="intention-note reveal d2">The ultimate intention is to be the best servants of Allah. AI is simply a <b>means</b>: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back.</p>
+  </div>
+</section>
+
+<!-- 5 · BISMILLAH -->
+<section class="slide dark bismillah" id="bismillah">
+  <div class="slide-inner center-stage">
+    <p class="small-label reveal">So we begin with intention</p>
+    <p class="arabic reveal d1">بِسْمِ اللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <p class="translit reveal d2">Bismillāh ir-Raḥmān ir-Raḥīm</p>
+    <p class="translation reveal d3">In the name of Allah, the Most Gracious, the Most Merciful. Let's start with a conscious <em>bismillah</em>.</p>
+  </div>
+</section>
+
+<!-- 6 · PRINCIPLES -->
+<section class="slide light warm" id="principles">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">Four AI first principles</h2>
+    <p class="section-sub reveal d1">The mindset that makes everything after this work.</p>
+    <div class="principles">
+      <div class="pr reveal d1"><span class="pr-n">1</span><div><h3>Give yourself grace</h3><p>You will not keep up with everything, and you don't need to. Pick what serves your goals and let the rest go.</p></div></div>
+      <div class="pr reveal d2"><span class="pr-n">2</span><div><h3>Outcomes, not AI for its own sake</h3><p>Start from the result you want. The best AI use is invisible: it's the hours you got back, not the tool you used.</p></div></div>
+      <div class="pr reveal d3"><span class="pr-n">3</span><div><h3>Use AI to finish, not to start</h3><p>Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment.</p></div></div>
+      <div class="pr reveal d4"><span class="pr-n">4</span><div><h3>Garbage in, garbage out</h3><p>AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · THE MAP -->
+<section class="slide dark alt" id="map">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">Ask, delegate, build</h2>
+    <p class="section-sub reveal d1">One framework, three levels. As you climb, AI does more on your behalf. We'll use the Claude ecosystem as the vehicle, but this mental model travels to any AI tool you'll ever use.</p>
+    <div class="spectrum">
+      <div class="lvl-col reveal d1"><div class="tag">Level 1 · Chat</div><div class="verb">Ask</div><div class="prod">Claude</div><div class="desc">You ask a question, it answers. The level almost everyone already knows.</div><div class="does"><b>It responds.</b> You stay in the driver's seat.</div></div>
+      <div class="lvl-col reveal d2"><div class="tag">Level 2 · Cowork</div><div class="verb">Delegate</div><div class="prod">Claude Cowork</div><div class="desc">You share an outcome and a cadence; it carries out the work for you.</div><div class="does"><b>It acts</b> inside Claude's world, on your behalf.</div></div>
+      <div class="lvl-col reveal d3"><div class="tag">Level 3 · Code</div><div class="verb">Build</div><div class="prod">Claude Code</div><div class="desc">You describe a tool in plain English; it builds, runs, and ships it.</div><div class="does"><b>It creates</b> a thing that lives on its own.</div></div>
+    </div>
+    <div class="spectrum-axis reveal d4"><span>Less autonomy</span><span class="bar"></span><span class="hi">More autonomy</span></div>
+  </div>
+</section>
+
+<!-- 8 · LEVEL 1 DIVIDER -->
+<section class="slide divider" id="level1">
+  <div class="divider-inner">
+    <div class="lvl-kicker reveal">Level 1</div>
+    <h2 class="big reveal from-left d1">Chat with <span class="accent">Claude</span></h2>
+    <p class="sub reveal d2">Ask a question, get an answer. This is the level most people already live in. Let's learn to get far more out of it.</p>
+    <div class="trigger reveal d3"><span class="k">Reach for it when</span><span class="v">you have a one-off need: a question to answer, something to draft, summarize, brainstorm, or understand right now.</span></div>
+  </div>
+</section>
+
+<!-- 9 · PROMPTING -->
+<section class="slide light" id="prompting">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">What separates a mediocre prompt from a great one</h2>
+    <div class="feature-list">
+      <div class="feature reveal d1"><div><div class="ft">Give it a role and a goal</div><div class="fd">"You're my marketing analyst. I want X for audience Y." Context turns a generic answer into a useful one.</div></div></div>
+      <div class="feature reveal d2"><div><div class="ft">Show, don't just tell</div><div class="fd">Paste examples, data, a past piece in your voice. AI matches what it can see.</div></div></div>
+      <div class="feature reveal d3"><div><div class="ft">Iterate; it's a conversation, not a vending machine</div><div class="fd">The first answer is a draft. Refine it: "tighter," "more skeptical," "explain it for a beginner."</div></div></div>
+      <div class="feature reveal d4"><div><div class="ft">Ask for the format you want</div><div class="fd">Table, bullets, email, three options. Tell it the shape of the output up front.</div></div></div>
+    </div>
+    <div class="callout reveal d5"><div><b>Pro move:</b> stuck on how to ask? Ask Claude to write the prompt for you. "Help me write a prompt that will get me…"</div></div>
+  </div>
+</section>
+
+<!-- 10 · GET MORE OUT OF CHAT (merged: building blocks + power moves) -->
+<section class="slide light warm" id="blocks">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">Get more out of <span class="accent">Chat</span></h2>
+    <p class="section-sub reveal d1">Two ways past a single question: customize Claude around how you work, and use the modes most people never touch.</p>
+    <div class="duo">
+      <div class="duo-col reveal d2">
+        <h3 class="duo-h">Customize it</h3>
+        <dl class="defs">
+          <div class="def"><dt><span class="dot"></span>Projects</dt><dd>A workspace that remembers your context and files, so you stop re-explaining yourself.</dd></div>
+          <div class="def"><dt><span class="dot"></span>Skills</dt><dd>Reusable playbooks you teach once, then trigger on demand (a Socratic tutor, your brand-voice writer).</dd></div>
+          <div class="def"><dt><span class="dot"></span>Connectors (MCP)</dt><dd>Plug Claude into your real tools (Drive, Gmail, calendar) so it works with your data.</dd></div>
+        </dl>
+      </div>
+      <div class="duo-col reveal d3">
+        <h3 class="duo-h">Power moves</h3>
+        <dl class="defs">
+          <div class="def"><dt><span class="dot"></span>Use AI to understand AI</dt><dd>Don't know a term? Ask Claude to explain it simply, with an example from your world.</dd></div>
+          <div class="def"><dt><span class="dot"></span>Multimodal</dt><dd>Drop in a screenshot, a whiteboard photo, a PDF. It sees images, and builds from them.</dd></div>
+          <div class="def"><dt><span class="dot"></span>Voice &amp; Artifacts</dt><dd>Talk to it to rehearse or roleplay; ask for a calculator or chart and watch it render live.</dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="bridge-note reveal d4"><b>These building blocks carry with you</b> to Levels 2 and 3. Learn them once, use them everywhere.</p>
+  </div>
+</section>
+
+<!-- 11 · DEMO 1 -->
+<section class="slide demo" id="demo1">
+  <div class="demo-inner">
+    <span class="demo-badge reveal zoom"><span class="pulse"></span>Live Demo · Level 1</span>
+    <h2 class="reveal d1">Building a Socratic learning skill</h2>
+    <p class="demo-sub reveal d2">Teaching Claude a reusable playbook once, so it teaches me anything by asking questions instead of just handing over answers.</p>
+    <div class="demo-cols">
+      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li>Creating a custom Skill from scratch</li><li>Giving it a teaching style and rules</li><li>Triggering it on a real topic</li></ul></div>
+      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li>How little "code" is involved</li><li>How it reuses across chats</li><li>How context makes it mine</li></ul></div>
+      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p>A skill is a habit you teach once and reuse forever: your first taste of customizing AI around how you think.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · LEVEL 2 DIVIDER -->
+<section class="slide divider" id="level2">
+  <div class="divider-inner">
+    <div class="lvl-kicker reveal">Level 2</div>
+    <h2 class="big reveal from-left d1">Delegate with <span class="accent">Cowork</span></h2>
+    <p class="sub reveal d2">Stop doing work your AI should be doing. Share an outcome and a cadence, and it handles the rest.</p>
+    <div class="trigger reveal d3"><span class="k">Reach for it when</span><span class="v">a task is repetitive, time-sensitive, or drowning in data: the kind of thing you'd hand to a capable assistant.</span></div>
+  </div>
+</section>
+
+<!-- 14 · COWORK -->
+<section class="slide light" id="cowork">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">The leap: it does things <span class="accent">on your behalf</span></h2>
+    <div class="vs-grid">
+      <div class="vs-card reveal d1"><div class="vh">Level 1</div><h4>Chat</h4><p>You ask, it answers. You take the answer and go do the work yourself.</p></div>
+      <div class="vs-mid reveal d2">→</div>
+      <div class="vs-card reveal d3"><div class="vh">Level 2</div><h4>Cowork</h4><p>You set the outcome and cadence once. It runs the task, on schedule, with your files and tools, and reports back.</p></div>
+    </div>
+    <div class="feature-list">
+      <div class="feature reveal d3"><div><div class="ft">Plugins</div><div class="fd">A bundled package of connectors, skills, and agents: a complete capability you install in one move.</div></div></div>
+      <div class="feature reveal d4"><div><div class="ft">Headless browsing and your files</div><div class="fd">It can navigate the web and gather what it needs, then read, organize, and produce real documents in your workspace.</div></div></div>
+      <div class="feature reveal d5"><div><div class="ft">Runs on a cadence</div><div class="fd">"Every morning at 7," "every Friday." Delegation that shows up without you asking.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 · DEMO 2 -->
+<section class="slide demo" id="demo2">
+  <div class="demo-inner">
+    <span class="demo-badge reveal zoom"><span class="pulse"></span>Live Demo · Level 2</span>
+    <h2 class="reveal d1">A daily LinkedIn job digest, delivered to my inbox</h2>
+    <p class="demo-sub reveal d2">Delegating a repetitive, time-sensitive task: find relevant roles, summarize them, and email me a clean digest every morning, automatically.</p>
+    <div class="demo-cols">
+      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li>Setting the outcome and cadence</li><li>Connecting browsing plus email</li><li>Letting it run on its own</li></ul></div>
+      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li>I describe the result, not the steps</li><li>It acts across tools for me</li><li>Zero effort once it's set up</li></ul></div>
+      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p>Delegation means defining the outcome once, then receiving the value forever. This is your digital twin handling the busywork.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 · LEVEL 3 DIVIDER -->
+<section class="slide divider" id="level3">
+  <div class="divider-inner">
+    <div class="lvl-kicker reveal">Level 3</div>
+    <h2 class="big reveal from-left d1">Build with <span class="accent">Claude Code</span></h2>
+    <p class="sub reveal d2">No coding background? No problem. Turn plain English into working tools, and unlock what that means for non-technical builders.</p>
+    <div class="trigger reveal d3"><span class="k">Reach for it when</span><span class="v">you want something custom that lives on its own (an app, a website), or a heavy analytical job that needs real computing power.</span></div>
+  </div>
+</section>
+
+<!-- 16 · CODE: HOW IT WORKS + VOCABULARY (merged terminal style) -->
+<section class="slide dark alt" id="code-concepts">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">You don't write code. You point Claude at what you want.</h2>
+    <p class="section-sub reveal d1">Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here's the only vocabulary you need.</p>
+    <div class="terminal reveal d2">
+      <div class="terminal-bar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">claude-code · your-project</span></div>
+      <div class="terminal-body">
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> project folder</div><p>One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place.</p></div>
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> permissions</div><p>You decide what Claude can do on its own versus what needs your sign-off. Your safety dial as autonomy goes up.</p></div>
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> CLAUDE.md</div><p>A plain-text house-rules file. Set them globally (how you like to work) and per project (what this build needs).</p></div>
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> GitHub &amp; repos</div><p>The cloud home for what you build. A "repo" stores your project, its history, and lets you ship it to the world.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 · DEMO 3 -->
+<section class="slide demo" id="demo3">
+  <div class="demo-inner">
+    <span class="demo-badge reveal zoom"><span class="pulse"></span>Live Demo · Level 3</span>
+    <h2 class="reveal d1">A reservation app for the masjid soccer field</h2>
+    <p class="demo-sub reveal d2">From plain English to a working tool: building a real booking app, no code written by me, in service of the community.</p>
+    <div class="demo-cols">
+      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li>Describing the app I want</li><li>Claude writing and running it</li><li>Approving steps along the way</li></ul></div>
+      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li>I speak in outcomes, not code</li><li>It handles the technical chain</li><li>Permissions keep me in control</li></ul></div>
+      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p>Building is no longer gated by knowing how to code. It's gated by knowing what you want. That's the real unlock.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 · GUARDRAILS -->
+<section class="slide dark" id="guardrails">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">More autonomy means more responsibility</h2>
+    <p class="section-sub reveal d1">As you move up the levels, AI does more on its own. These three habits keep you in control the whole way.</p>
+    <div class="guards">
+      <div class="g reveal d2"><h4>Mind your data</h4><p>Don't paste secrets, client-confidential info, or anything you wouldn't want stored. Know what's sensitive before you share it.</p><div class="rail">Rail: think before you paste</div></div>
+      <div class="g reveal d3"><h4>Verify the output</h4><p>AI can sound confident and still be wrong. It "hallucinates." You finish, not it: check the facts, numbers, and claims that matter.</p><div class="rail">Rail: trust, then verify</div></div>
+      <div class="g reveal d4"><h4>Use permissions</h4><p>The more it can act for you, the more you set boundaries. Approve big actions; let it run the safe, routine ones.</p><div class="rail">Rail: you hold the dial</div></div>
+    </div>
+    <div class="autonomy-strip reveal d5">
+      <div class="seg"><b>Chat</b>answers only, low risk</div>
+      <div class="seg"><b>Cowork</b>acts for you, set boundaries</div>
+      <div class="seg"><b>Code</b>builds and runs, permission first</div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 · RECAP -->
+<section class="slide dark alt" id="recap">
+  <div class="slide-inner">
+    <h2 class="section-title reveal">One framework, three levels</h2>
+    <div class="recap-strip">
+      <div class="recap-item reveal d1"><div class="rn">Level 1 · Chat</div><div class="rv">Ask</div><div class="rd">For one-off needs. Master prompting, projects, skills, and connectors.</div></div>
+      <div class="recap-item reveal d2"><div class="rn">Level 2 · Cowork</div><div class="rv">Delegate</div><div class="rd">For repetitive, time-sensitive work. Hand off the outcome; it runs on a cadence.</div></div>
+      <div class="recap-item reveal d3"><div class="rn">Level 3 · Code</div><div class="rv">Build</div><div class="rd">For custom tools and heavy analysis. Plain English becomes a working thing.</div></div>
+    </div>
+    <div class="callout reveal d4"><div>Remember the intentions and the first principles. AI is the means, not the end. Outcomes over hype. Finish, don't start. Garbage in, garbage out.</div></div>
+    <p class="recap-foot reveal d5">Now go out there and <span class="accent">experiment</span>.</p>
+  </div>
+</section>
+
+<!-- 22 · CLOSE -->
+<section class="slide close" id="close">
+  <div class="slide-inner center-stage">
+    <img src="assets/atmit-logo-onDark.png" alt="Atmit Labs" class="logo reveal">
+    <h2 class="reveal d1">Let's make AI work for <span class="accent">your</span> team</h2>
+    <p class="lede reveal d2">If you want help finding where AI belongs in your work, and building it, that's exactly what Atmit Labs does.</p>
+    <div class="cta-row reveal d3">
+      <div class="cta-item"><div class="ch">Talk to me</div><div class="cv">hello@atmitlabs.ai</div></div>
+      <div class="cta-item"><div class="ch">What we do</div><div class="cv">AI and automation, made intuitive</div></div>
+      <div class="cta-item"><div class="ch">Take home</div><div class="cv">Pick one task this week, climb one level</div></div>
+    </div>
+    <p class="tagline reveal d4">Automation and tech, made intuitive.</p>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 · Ayman Kotob · <strong>Atmit Labs</strong> · Texas AI Tech Summit</div>
+  <div>Press <strong>P</strong> to present · <strong>←/→</strong> to navigate · <strong>Esc</strong> to exit</div>
+</footer>
+
+<div class="slide-indicator" id="slideIndicator">1 / 19</div>
+
+<script>
+const supportsReveal = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (supportsReveal) {
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); });
+  },{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+}
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled',window.scrollY>20); });
+
+function getSnapTargets(){ return Array.from(document.querySelectorAll('.hero, .slide')); }
+function getCurrentSlideIndex(){
+  const t=getSnapTargets(); let best=0,bd=Infinity;
+  for(let i=0;i<t.length;i++){ const d=Math.abs(t[i].getBoundingClientRect().top); if(d<bd){bd=d;best=i;} }
+  return best;
+}
+function updateIndicator(){
+  const t=getSnapTargets(); const i=getCurrentSlideIndex();
+  document.getElementById('slideIndicator').textContent=`${i+1} / ${t.length}`;
+  const id=t[i].id||null;
+  document.querySelectorAll('.nav-links a').forEach(a=>{ a.classList.toggle('active', id?a.getAttribute('href')==='#'+id:false); });
+}
+function togglePresent(forceOff){
+  const html=document.documentElement; const btn=document.getElementById('presentBtn');
+  const entering=forceOff?false:!html.classList.contains('present-mode');
+  const idx=entering?getCurrentSlideIndex():null;
+  html.classList.toggle('present-mode',entering);
+  btn.textContent=entering?'Exit':'Present';
+  try{ window.parent.postMessage({type:'presentMode',on:entering},'*'); }catch(e){}
+  if(entering){ const target=getSnapTargets()[idx]; requestAnimationFrame(()=>{ target.scrollIntoView({behavior:'instant'}); updateIndicator(); }); }
+}
+function goToSlide(dir){
+  const t=getSnapTargets(); const i=Math.max(0,Math.min(getCurrentSlideIndex()+dir,t.length-1));
+  t[i].scrollIntoView({behavior:'smooth'}); setTimeout(updateIndicator,350);
+}
+document.addEventListener('keydown',e=>{
+  const inP=document.documentElement.classList.contains('present-mode');
+  if((e.key==='p'||e.key==='P')&&!e.target.matches('input,textarea,[contenteditable="true"]')){ e.preventDefault(); togglePresent(); return; }
+  if(e.key==='Escape'&&inP){ togglePresent(true); return; }
+  if(!inP) return;
+  const next=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key);
+  const prev=['ArrowUp','ArrowLeft','PageUp'].includes(e.key);
+  if(next||prev){ e.preventDefault(); goToSlide(next?1:-1); }
+});
+let wheelLocked=false;
+document.addEventListener('wheel',e=>{
+  if(!document.documentElement.classList.contains('present-mode')) return;
+  e.preventDefault(); if(wheelLocked) return; wheelLocked=true;
+  goToSlide(e.deltaY>0?1:-1); setTimeout(()=>{wheelLocked=false;},700);
+},{passive:false});
+window.addEventListener('scroll',()=>{ if(!document.documentElement.classList.contains('present-mode')) updateIndicator(); });
+updateIndicator();
+</script>
+</body>
+</html>
