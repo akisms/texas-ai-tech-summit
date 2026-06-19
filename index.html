@@ -362,7 +362,8 @@ function fmt(raw){
   return e
     .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g,'<span class="accent">$1</span>')
-    .replace(/_([^_]+)_/g,'<em>$1</em>');
+    .replace(/_([^_]+)_/g,'<em>$1</em>')
+    .replace(/\n/g,'<br>');
 }
 const li=arr=>arr.map(x=>`<li>${fmt(x)}</li>`).join('');
 
