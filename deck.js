@@ -1,0 +1,221 @@
+/* ════════════════════════════════════════════════════════════════
+   THE DECK — this is the only file you edit to change the talk.
+   ----------------------------------------------------------------
+   Each { ... } block below is one slide, in the order it appears.
+
+   • Change words: edit the text inside the quotes.
+   • Remove a slide: delete its whole { ... } block (and its comma).
+   • Reorder slides: move a { ... } block up or down.
+   • Add a slide: copy a block of the same "type", paste, edit.
+   • Toggles: e.g. on the About slide, set  ribbon: false  to hide it.
+
+   Emphasis inside any text (all optional):
+     *word*    -> brand-colored word
+     **word**  -> bold word
+     _word_    -> italic word
+
+   The ONE rule: keep the quotes and the commas. A missing quote or
+   comma is the usual cause of a problem; if the deck shows an error
+   bar, that's what to look for. Git can always roll back.
+   ════════════════════════════════════════════════════════════════ */
+
+window.DECK = [
+
+  // ───────── TITLE ─────────
+  { type: "hero", id: "top",
+    badge: "Texas AI Tech Summit · Workshop",
+    title: "From Chat to Code",
+    lede:  "The three levels of AI that actually matter, and how to climb them. A hands-on journey through the Claude ecosystem.",
+    name:  "Ayman Kotob",
+    role:  "Founder, Atmit Labs · _Automation and tech, made intuitive_" },
+
+  // ───────── ABOUT ─────────   (set ribbon: false to hide the chip on the photo)
+  { type: "about", id: "about",
+    ribbon: "Atmit Labs",
+    lead: "I help lean teams turn AI from a buzzword into measurable ROI.",
+    body: "I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and habits that give small teams the leverage of much bigger ones.",
+    creds: [
+      "**One** framework you'll keep",
+      "**Zero** code required from you",
+      "**Three** live demos today"
+    ] },
+
+  // ───────── INTENTION ─────────
+  { type: "intention", id: "intention",
+    title: "AI is the *means*, not the end.",
+    q: "Quick gut-check: why are you really here today? What outcome are you hoping AI helps you reach?",
+    note: "The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back." },
+
+  // ───────── BISMILLAH ─────────
+  { type: "bismillah", id: "bismillah",
+    label: "So we begin with intention",
+    arabic: "بِسْمِ اللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    translit: "Bismillāh ir-Raḥmān ir-Raḥīm",
+    translation: "In the name of Allah, the Most Gracious, the Most Merciful. Let's start with a conscious _bismillah_." },
+
+  // ───────── FIRST PRINCIPLES ─────────
+  { type: "principles", id: "principles",
+    title: "Four AI first principles",
+    sub: "The mindset that makes everything after this work.",
+    items: [
+      { t: "Give yourself grace", d: "You will not keep up with everything, and you don't need to. Pick what serves your goals and let the rest go." },
+      { t: "Outcomes, not AI for its own sake", d: "Start from the result you want. The best AI use is invisible: it's the hours you got back, not the tool you used." },
+      { t: "Use AI to finish, not to start", d: "Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment." },
+      { t: "Garbage in, garbage out", d: "AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you." }
+    ] },
+
+  // ───────── THE 3 LEVELS (MAP) ─────────
+  { type: "map", id: "map",
+    title: "Ask, delegate, build",
+    sub: "One framework, three levels. As you climb, AI does more on your behalf. We'll use the Claude ecosystem as the vehicle, but this mental model travels to any AI tool you'll ever use.",
+    cols: [
+      { tag: "Level 1 · Chat", verb: "Ask", prod: "Claude", desc: "You ask a question, it answers. The level almost everyone already knows.", does: "**It responds.** You stay in the driver's seat." },
+      { tag: "Level 2 · Cowork", verb: "Delegate", prod: "Claude Cowork", desc: "You share an outcome and a cadence; it carries out the work for you.", does: "**It acts** inside Claude's world, on your behalf." },
+      { tag: "Level 3 · Code", verb: "Build", prod: "Claude Code", desc: "You describe a tool in plain English; it builds, runs, and ships it.", does: "**It creates** a thing that lives on its own." }
+    ],
+    axisLo: "Less autonomy",
+    axisHi: "More autonomy" },
+
+  // ───────── LEVEL 1 DIVIDER ─────────
+  { type: "divider", id: "level1",
+    kicker: "Level 1",
+    title: "Chat with *Claude*",
+    sub: "Ask a question, get an answer. This is the level most people already live in. Let's learn to get far more out of it.",
+    triggerKey: "Reach for it when",
+    trigger: "you have a one-off need: a question to answer, something to draft, summarize, brainstorm, or understand right now." },
+
+  // ───────── PROMPTING ─────────
+  { type: "features", id: "prompting", theme: "light",
+    title: "What separates a mediocre prompt from a great one",
+    items: [
+      { t: "Give it a role and a goal", d: "\"You're my marketing analyst. I want X for audience Y.\" Context turns a generic answer into a useful one." },
+      { t: "Show, don't just tell", d: "Paste examples, data, a past piece in your voice. AI matches what it can see." },
+      { t: "Iterate; it's a conversation, not a vending machine", d: "The first answer is a draft. Refine it: \"tighter,\" \"more skeptical,\" \"explain it for a beginner.\"" },
+      { t: "Ask for the format you want", d: "Table, bullets, email, three options. Tell it the shape of the output up front." }
+    ],
+    callout: "**Pro move:** stuck on how to ask? Ask Claude to write the prompt for you. \"Help me write a prompt that will get me…\"" },
+
+  // ───────── GET MORE OUT OF CHAT ─────────
+  { type: "duo", id: "blocks",
+    title: "Get more out of *Chat*",
+    sub: "Two ways past a single question: customize Claude around how you work, and use the modes most people never touch.",
+    columns: [
+      { h: "Customize it", items: [
+        { t: "Projects", d: "A workspace that remembers your context and files, so you stop re-explaining yourself." },
+        { t: "Skills", d: "Reusable playbooks you teach once, then trigger on demand (a Socratic tutor, your brand-voice writer)." },
+        { t: "Connectors (MCP)", d: "Plug Claude into your real tools (Drive, Gmail, calendar) so it works with your data." }
+      ] },
+      { h: "Power moves", items: [
+        { t: "Use AI to understand AI", d: "Don't know a term? Ask Claude to explain it simply, with an example from your world." },
+        { t: "Multimodal", d: "Drop in a screenshot, a whiteboard photo, a PDF. It sees images, and builds from them." },
+        { t: "Voice & Artifacts", d: "Talk to it to rehearse or roleplay; ask for a calculator or chart and watch it render live." }
+      ] }
+    ],
+    bridge: "**These building blocks carry with you** to Levels 2 and 3. Learn them once, use them everywhere." },
+
+  // ───────── DEMO 1 ─────────
+  { type: "demo", id: "demo1",
+    badge: "Live Demo · Level 1",
+    title: "Building a Socratic learning skill",
+    sub: "Teaching Claude a reusable playbook once, so it teaches me anything by asking questions instead of just handing over answers.",
+    show: [ "Creating a custom Skill from scratch", "Giving it a teaching style and rules", "Triggering it on a real topic" ],
+    watch: [ "How little \"code\" is involved", "How it reuses across chats", "How context makes it mine" ],
+    take: "A skill is a habit you teach once and reuse forever: your first taste of customizing AI around how you think." },
+
+  // ───────── LEVEL 2 DIVIDER ─────────
+  { type: "divider", id: "level2",
+    kicker: "Level 2",
+    title: "Delegate with *Cowork*",
+    sub: "Stop doing work your AI should be doing. Share an outcome and a cadence, and it handles the rest.",
+    triggerKey: "Reach for it when",
+    trigger: "a task is repetitive, time-sensitive, or drowning in data: the kind of thing you'd hand to a capable assistant." },
+
+  // ───────── COWORK ─────────
+  { type: "cowork", id: "cowork",
+    title: "The leap: it does things *on your behalf*",
+    vs: [
+      { label: "Level 1", h: "Chat", d: "You ask, it answers. You take the answer and go do the work yourself." },
+      { label: "Level 2", h: "Cowork", d: "You set the outcome and cadence once. It runs the task, on schedule, with your files and tools, and reports back." }
+    ],
+    features: [
+      { t: "Plugins", d: "A bundled package of connectors, skills, and agents: a complete capability you install in one move." },
+      { t: "Headless browsing and your files", d: "It can navigate the web and gather what it needs, then read, organize, and produce real documents in your workspace." },
+      { t: "Runs on a cadence", d: "\"Every morning at 7,\" \"every Friday.\" Delegation that shows up without you asking." }
+    ] },
+
+  // ───────── DEMO 2 ─────────
+  { type: "demo", id: "demo2",
+    badge: "Live Demo · Level 2",
+    title: "A daily LinkedIn job digest, delivered to my inbox",
+    sub: "Delegating a repetitive, time-sensitive task: find relevant roles, summarize them, and email me a clean digest every morning, automatically.",
+    show: [ "Setting the outcome and cadence", "Connecting browsing plus email", "Letting it run on its own" ],
+    watch: [ "I describe the result, not the steps", "It acts across tools for me", "Zero effort once it's set up" ],
+    take: "Delegation means defining the outcome once, then receiving the value forever. This is your digital twin handling the busywork." },
+
+  // ───────── LEVEL 3 DIVIDER ─────────
+  { type: "divider", id: "level3",
+    kicker: "Level 3",
+    title: "Build with *Claude Code*",
+    sub: "No coding background? No problem. Turn plain English into working tools, and unlock what that means for non-technical builders.",
+    triggerKey: "Reach for it when",
+    trigger: "you want something custom that lives on its own (an app, a website), or a heavy analytical job that needs real computing power." },
+
+  // ───────── CLAUDE CODE (vocabulary) ─────────
+  { type: "code", id: "code-concepts",
+    title: "You don't write code. You point Claude at what you want.",
+    sub: "Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here's the only vocabulary you need.",
+    termTitle: "claude-code · your-project",
+    items: [
+      { t: "project folder", d: "One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place." },
+      { t: "permissions", d: "You decide what Claude can do on its own versus what needs your sign-off. Your safety dial as autonomy goes up." },
+      { t: "CLAUDE.md", d: "A plain-text house-rules file. Set them globally (how you like to work) and per project (what this build needs)." },
+      { t: "GitHub & repos", d: "The cloud home for what you build. A \"repo\" stores your project, its history, and lets you ship it to the world." }
+    ] },
+
+  // ───────── DEMO 3 ─────────
+  { type: "demo", id: "demo3",
+    badge: "Live Demo · Level 3",
+    title: "A reservation app for the masjid soccer field",
+    sub: "From plain English to a working tool: building a real booking app, no code written by me, in service of the community.",
+    show: [ "Describing the app I want", "Claude writing and running it", "Approving steps along the way" ],
+    watch: [ "I speak in outcomes, not code", "It handles the technical chain", "Permissions keep me in control" ],
+    take: "Building is no longer gated by knowing how to code. It's gated by knowing what you want. That's the real unlock." },
+
+  // ───────── GUARDRAILS ─────────
+  { type: "guardrails", id: "guardrails",
+    title: "More autonomy means more responsibility",
+    sub: "As you move up the levels, AI does more on its own. These three habits keep you in control the whole way.",
+    items: [
+      { t: "Mind your data", d: "Don't paste secrets, client-confidential info, or anything you wouldn't want stored. Know what's sensitive before you share it.", rail: "Rail: think before you paste" },
+      { t: "Verify the output", d: "AI can sound confident and still be wrong. It \"hallucinates.\" You finish, not it: check the facts, numbers, and claims that matter.", rail: "Rail: trust, then verify" },
+      { t: "Use permissions", d: "The more it can act for you, the more you set boundaries. Approve big actions; let it run the safe, routine ones.", rail: "Rail: you hold the dial" }
+    ],
+    segs: [
+      "**Chat**answers only, low risk",
+      "**Cowork**acts for you, set boundaries",
+      "**Code**builds and runs, permission first"
+    ] },
+
+  // ───────── RECAP ─────────
+  { type: "recap", id: "recap",
+    title: "One framework, three levels",
+    items: [
+      { n: "Level 1 · Chat", v: "Ask", d: "For one-off needs. Master prompting, projects, skills, and connectors." },
+      { n: "Level 2 · Cowork", v: "Delegate", d: "For repetitive, time-sensitive work. Hand off the outcome; it runs on a cadence." },
+      { n: "Level 3 · Code", v: "Build", d: "For custom tools and heavy analysis. Plain English becomes a working thing." }
+    ],
+    callout: "Remember the intentions and the first principles. AI is the means, not the end. Outcomes over hype. Finish, don't start. Garbage in, garbage out.",
+    foot: "Now go out there and *experiment*." },
+
+  // ───────── CLOSING ─────────
+  { type: "close", id: "close",
+    title: "Let's make AI work for *your* team",
+    lede: "If you want help finding where AI belongs in your work, and building it, that's exactly what Atmit Labs does.",
+    ctas: [
+      { h: "Talk to me", v: "hello@atmitlabs.ai" },
+      { h: "What we do", v: "AI and automation, made intuitive" },
+      { h: "Take home", v: "Pick one task this week, climb one level" }
+    ],
+    tagline: "Automation and tech, made intuitive." }
+
+];
