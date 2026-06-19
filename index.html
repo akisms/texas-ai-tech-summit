@@ -351,9 +351,7 @@ html.present-mode footer{display:none;}
 
 <div class="slide-indicator" id="slideIndicator">1 / 1</div>
 
-<!-- ░░ deck content (edit this file) ░░ -->
-<script src="deck.js"></script>
-
+<!-- ░░ deck content lives in deck.js (edit that file). The engine below loads it fresh on every visit. ░░ -->
 <!-- ░░ engine — renders deck.js into slides, then wires up navigation. You rarely touch this. ░░ -->
 <script>
 /* tiny markup: *accent*  **bold**  _italic_  (HTML is escaped first) */
@@ -534,31 +532,27 @@ function showError(detail){
 }
 
 /* ── render the deck from data ── */
-(function renderDeck(){
-  try{
-    if(typeof DECK==='undefined' || !Array.isArray(DECK)) throw new Error('DECK is missing or not a list.');
-    const html = DECK.map((s,i)=>{
-      const tpl=T[s.type];
-      if(!tpl) throw new Error('Slide '+(i+1)+': unknown type "'+s.type+'".');
-      return tpl(s);
-    }).join('\n');
-    document.getElementById('deck').innerHTML = html;
-  }catch(err){
-    showError(err.message||err);
+function renderDeck(){
+  if(typeof window.DECK==='undefined' || !Array.isArray(window.DECK)) throw new Error('DECK is missing or not a list.');
+  const html = window.DECK.map((s,i)=>{
+    const tpl=T[s.type];
+    if(!tpl) throw new Error('Slide '+(i+1)+': unknown type "'+s.type+'".');
+    return tpl(s);
+  }).join('\n');
+  document.getElementById('deck').innerHTML = html;
+}
+function wireReveal(){
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); });
+    },{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
   }
-})();
-
-/* ── navigation / present mode (runs after slides exist) ── */
-const supportsReveal = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (supportsReveal) {
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); });
-  },{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-} else {
-  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
 }
 
+/* ── navigation / present mode ── */
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled',window.scrollY>20); });
 
@@ -603,7 +597,20 @@ document.addEventListener('wheel',e=>{
   goToSlide(e.deltaY>0?1:-1); setTimeout(()=>{wheelLocked=false;},700);
 },{passive:false});
 window.addEventListener('scroll',()=>{ if(!document.documentElement.classList.contains('present-mode')) updateIndicator(); });
-updateIndicator();
+
+/* ── load deck.js fresh every visit (cache-busted), then render ── */
+(async function boot(){
+  try{
+    const res = await fetch('deck.js?v='+Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('couldn’t fetch deck.js (HTTP '+res.status+')');
+    (new Function(await res.text()))();   // executes deck.js -> sets window.DECK
+    renderDeck();
+    wireReveal();
+    updateIndicator();
+  }catch(err){
+    showError(err.message||err);
+  }
+})();
 </script>
 </body>
 </html>
