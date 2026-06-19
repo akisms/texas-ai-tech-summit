@@ -33,7 +33,7 @@ window.DECK = [
   { type: "about", id: "about",
     ribbon: false,
     lead: "I help lean teams turn AI from a buzzword into measurable ROI.",
-    body: "I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and habits that give small teams the leverage of much bigger ones.",
+    body: "I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and systems that give small teams the leverage of much bigger ones.",
     creds: [
       "**One** framework you'll keep",
       "**Zero** code required from you",
@@ -43,8 +43,8 @@ window.DECK = [
   // ───────── INTENTION ─────────
   { type: "intention", id: "intention",
     title: "AI is the *means*, not the end.",
-    q: "Quick gut-check: why are you really here today? What outcome are you hoping AI helps you reach?",
-    note: "The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back." },
+    q: "Quick gut-check: why are here today? What outcome are you hoping AI helps you reach?",
+    note: "The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back and the capabilities it unlocks." },
 
   // ───────── BISMILLAH ─────────
   { type: "bismillah", id: "bismillah",
