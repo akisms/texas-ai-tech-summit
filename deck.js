@@ -43,7 +43,7 @@ window.DECK = [
   // ───────── INTENTION ─────────
   { type: "intention", id: "intention",
     title: "AI is the *means*, not the end.",
-    q: "Quick gut-check: why are here today? What outcome are you hoping AI helps you reach?",
+    q: "Quick gut-check: why are you here today? What outcome are you hoping AI helps you reach?",
     note: "The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back and the capabilities it unlocks." },
 
   // ───────── BISMILLAH ─────────
@@ -55,11 +55,11 @@ window.DECK = [
 
   // ───────── FIRST PRINCIPLES ─────────
   { type: "principles", id: "principles",
-    title: "Four AI first principles",
-    sub: "The mindset that makes everything after this work.",
+    title: "Some first principles",
+    sub: "Keep these things in mind as you explore AI.",
     items: [
       { t: "Give yourself grace", d: "You will not keep up with everything, and you don't need to. Pick what serves your goals and let the rest go." },
-      { t: "Outcomes, not AI for its own sake", d: "Start from the result you want. The best AI use is invisible: it's the hours you got back, not the tool you used." },
+      { t: "Outcomes, not AI for its own sake", d: "Start from the result you want. Fall in love with the problem, not the tool." },
       { t: "Use AI to finish, not to start", d: "Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment." },
       { t: "Garbage in, garbage out", d: "AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you." }
     ] },
@@ -70,8 +70,8 @@ window.DECK = [
     sub: "One framework, three levels. As you climb, AI does more on your behalf. We'll use the Claude ecosystem as the vehicle, but this mental model travels to any AI tool you'll ever use.",
     cols: [
       { tag: "Level 1 · Chat", verb: "Ask", prod: "Claude", desc: "You ask a question, it answers. The level almost everyone already knows.", does: "**It responds.** You stay in the driver's seat." },
-      { tag: "Level 2 · Cowork", verb: "Delegate", prod: "Claude Cowork", desc: "You share an outcome and a cadence; it carries out the work for you.", does: "**It acts** inside Claude's world, on your behalf." },
-      { tag: "Level 3 · Code", verb: "Build", prod: "Claude Code", desc: "You describe a tool in plain English; it builds, runs, and ships it.", does: "**It creates** a thing that lives on its own." }
+      { tag: "Level 2 · Cowork", verb: "Delegate", prod: "Claude Cowork", desc: "You share an outcome and a cadence; it carries out the work for you.", does: "**It acts** on your behalf." },
+      { tag: "Level 3 · Code", verb: "Build", prod: "Claude Code", desc: "You describe a tool in plain English; it builds the code and infrastructure, runs, and ships it.", does: "**It creates** a thing that lives on its own." }
     ],
     axisLo: "Less autonomy",
     axisHi: "More autonomy" },
@@ -80,7 +80,7 @@ window.DECK = [
   { type: "divider", id: "level1",
     kicker: "Level 1",
     title: "Chat with *Claude*",
-    sub: "Ask a question, get an answer. This is the level most people already live in. Let's learn to get far more out of it.",
+    sub: "Ask a question, get an answer. This is the level most people are already familiar with. Let's learn to get far more out of it.",
     triggerKey: "Reach for it when",
     trigger: "you have a one-off need: a question to answer, something to draft, summarize, brainstorm, or understand right now." },
 
@@ -90,7 +90,7 @@ window.DECK = [
     items: [
       { t: "Give it a role and a goal", d: "\"You're my marketing analyst. I want X for audience Y.\" Context turns a generic answer into a useful one." },
       { t: "Show, don't just tell", d: "Paste examples, data, a past piece in your voice. AI matches what it can see." },
-      { t: "Iterate; it's a conversation, not a vending machine", d: "The first answer is a draft. Refine it: \"tighter,\" \"more skeptical,\" \"explain it for a beginner.\"" },
+      { t: "Iterate; it's a two-way conversation, not an AI-monologue", d: "The first answer is a draft. Refine it: \"tighter,\" \"more skeptical,\" \"explain it for a beginner.\"" },
       { t: "Ask for the format you want", d: "Table, bullets, email, three options. Tell it the shape of the output up front." }
     ],
     callout: "**Pro move:** stuck on how to ask? Ask Claude to write the prompt for you. \"Help me write a prompt that will get me…\"" },
@@ -111,7 +111,7 @@ window.DECK = [
         { t: "Voice & Artifacts", d: "Talk to it to rehearse or roleplay; ask for a calculator or chart and watch it render live." }
       ] }
     ],
-    bridge: "**These building blocks carry with you** to Levels 2 and 3. Learn them once, use them everywhere." },
+    bridge: "**These building blocks carry with you** to Levels 2 and 3. Learn them once, and use them in higher levels of AI too." },
 
   // ───────── DEMO 1 ─────────
   { type: "demo", id: "demo1",
