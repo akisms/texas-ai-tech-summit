@@ -1,0 +1,550 @@
+# ════════════════════════════════════════════════════════════════
+#  EDITING THE PRESENTATION COPY
+#  ----------------------------------------------------------------
+#  Change the words below. ONE rule: leave the [labels in brackets]
+#  alone — they tell the slide where each piece of text goes.
+#
+#  Optional emphasis (all safe to use or ignore):
+#    *word*     -> brand-colored word
+#    **word**   -> bold word
+#    _word_     -> italic word
+#
+#  Lines starting with #, like this one, are notes and are ignored.
+#  Apostrophes, quotes, commas, colons — all fine to type normally.
+# ════════════════════════════════════════════════════════════════
+
+
+# ───────────── TITLE ─────────────
+[hero.badge]
+Texas AI Tech Summit · Workshop
+
+[hero.title]
+From Chat to Code
+
+[hero.lede]
+The three levels of AI that actually matter, and how to climb them. A hands-on journey through the Claude ecosystem.
+
+[hero.name]
+Ayman Kotob
+
+[hero.role]
+Founder, Atmit Labs · _Automation and tech, made intuitive_
+
+
+# ───────────── ABOUT ─────────────
+[about.ribbon]
+Atmit Labs
+
+[about.lead]
+I help lean teams turn AI from a buzzword into measurable ROI.
+
+[about.body]
+I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and habits that give small teams the leverage of much bigger ones.
+
+[about.cred1]
+**One** framework you'll keep
+
+[about.cred2]
+**Zero** code required from you
+
+[about.cred3]
+**Three** live demos today
+
+
+# ───────────── INTENTION ─────────────
+[intention.title]
+AI is the *means*, not the end.
+
+[intention.q]
+Quick gut-check: why are you really here today? What outcome are you hoping AI helps you reach?
+
+[intention.note]
+The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back.
+
+
+# ───────────── BISMILLAH ─────────────
+[bismillah.label]
+So we begin with intention
+
+[bismillah.arabic]
+بِسْمِ اللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ
+
+[bismillah.translit]
+Bismillāh ir-Raḥmān ir-Raḥīm
+
+[bismillah.translation]
+In the name of Allah, the Most Gracious, the Most Merciful. Let's start with a conscious _bismillah_.
+
+
+# ───────────── FIRST PRINCIPLES ─────────────
+[principles.title]
+Four AI first principles
+
+[principles.sub]
+The mindset that makes everything after this work.
+
+[principles.1t]
+Give yourself grace
+
+[principles.1d]
+You will not keep up with everything, and you don't need to. Pick what serves your goals and let the rest go.
+
+[principles.2t]
+Outcomes, not AI for its own sake
+
+[principles.2d]
+Start from the result you want. The best AI use is invisible: it's the hours you got back, not the tool you used.
+
+[principles.3t]
+Use AI to finish, not to start
+
+[principles.3d]
+Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment.
+
+[principles.4t]
+Garbage in, garbage out
+
+[principles.4d]
+AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you.
+
+
+# ───────────── THE 3 LEVELS (MAP) ─────────────
+[map.title]
+Ask, delegate, build
+
+[map.sub]
+One framework, three levels. As you climb, AI does more on your behalf. We'll use the Claude ecosystem as the vehicle, but this mental model travels to any AI tool you'll ever use.
+
+[map.1verb]
+Ask
+
+[map.1prod]
+Claude
+
+[map.1desc]
+You ask a question, it answers. The level almost everyone already knows.
+
+[map.1does]
+**It responds.** You stay in the driver's seat.
+
+[map.2verb]
+Delegate
+
+[map.2prod]
+Claude Cowork
+
+[map.2desc]
+You share an outcome and a cadence; it carries out the work for you.
+
+[map.2does]
+**It acts** inside Claude's world, on your behalf.
+
+[map.3verb]
+Build
+
+[map.3prod]
+Claude Code
+
+[map.3desc]
+You describe a tool in plain English; it builds, runs, and ships it.
+
+[map.3does]
+**It creates** a thing that lives on its own.
+
+[map.axisLo]
+Less autonomy
+
+[map.axisHi]
+More autonomy
+
+
+# ───────────── LEVEL 1 DIVIDER ─────────────
+[l1.kicker]
+Level 1
+
+[l1.title]
+Chat with *Claude*
+
+[l1.sub]
+Ask a question, get an answer. This is the level most people already live in. Let's learn to get far more out of it.
+
+[l1.trigK]
+Reach for it when
+
+[l1.trigV]
+you have a one-off need: a question to answer, something to draft, summarize, brainstorm, or understand right now.
+
+
+# ───────────── PROMPTING ─────────────
+[prompt.title]
+What separates a mediocre prompt from a great one
+
+[prompt.1t]
+Give it a role and a goal
+
+[prompt.1d]
+"You're my marketing analyst. I want X for audience Y." Context turns a generic answer into a useful one.
+
+[prompt.2t]
+Show, don't just tell
+
+[prompt.2d]
+Paste examples, data, a past piece in your voice. AI matches what it can see.
+
+[prompt.3t]
+Iterate; it's a conversation, not a vending machine
+
+[prompt.3d]
+The first answer is a draft. Refine it: "tighter," "more skeptical," "explain it for a beginner."
+
+[prompt.4t]
+Ask for the format you want
+
+[prompt.4d]
+Table, bullets, email, three options. Tell it the shape of the output up front.
+
+[prompt.callout]
+**Pro move:** stuck on how to ask? Ask Claude to write the prompt for you. "Help me write a prompt that will get me…"
+
+
+# ───────────── GET MORE OUT OF CHAT ─────────────
+[chat.title]
+Get more out of *Chat*
+
+[chat.sub]
+Two ways past a single question: customize Claude around how you work, and use the modes most people never touch.
+
+[chat.customH]
+Customize it
+
+[chat.projT]
+Projects
+
+[chat.projD]
+A workspace that remembers your context and files, so you stop re-explaining yourself.
+
+[chat.skillT]
+Skills
+
+[chat.skillD]
+Reusable playbooks you teach once, then trigger on demand (a Socratic tutor, your brand-voice writer).
+
+[chat.connT]
+Connectors (MCP)
+
+[chat.connD]
+Plug Claude into your real tools (Drive, Gmail, calendar) so it works with your data.
+
+[chat.powerH]
+Power moves
+
+[chat.uaT]
+Use AI to understand AI
+
+[chat.uaD]
+Don't know a term? Ask Claude to explain it simply, with an example from your world.
+
+[chat.mmT]
+Multimodal
+
+[chat.mmD]
+Drop in a screenshot, a whiteboard photo, a PDF. It sees images, and builds from them.
+
+[chat.vaT]
+Voice & Artifacts
+
+[chat.vaD]
+Talk to it to rehearse or roleplay; ask for a calculator or chart and watch it render live.
+
+[chat.bridge]
+**These building blocks carry with you** to Levels 2 and 3. Learn them once, use them everywhere.
+
+
+# ───────────── DEMO 1 (Socratic skill) ─────────────
+[demo1.title]
+Building a Socratic learning skill
+
+[demo1.sub]
+Teaching Claude a reusable playbook once, so it teaches me anything by asking questions instead of just handing over answers.
+
+[demo1.show1]
+Creating a custom Skill from scratch
+
+[demo1.show2]
+Giving it a teaching style and rules
+
+[demo1.show3]
+Triggering it on a real topic
+
+[demo1.watch1]
+How little "code" is involved
+
+[demo1.watch2]
+How it reuses across chats
+
+[demo1.watch3]
+How context makes it mine
+
+[demo1.take]
+A skill is a habit you teach once and reuse forever: your first taste of customizing AI around how you think.
+
+
+# ───────────── LEVEL 2 DIVIDER ─────────────
+[l2.kicker]
+Level 2
+
+[l2.title]
+Delegate with *Cowork*
+
+[l2.sub]
+Stop doing work your AI should be doing. Share an outcome and a cadence, and it handles the rest.
+
+[l2.trigK]
+Reach for it when
+
+[l2.trigV]
+a task is repetitive, time-sensitive, or drowning in data: the kind of thing you'd hand to a capable assistant.
+
+
+# ───────────── COWORK ─────────────
+[cowork.title]
+The leap: it does things *on your behalf*
+
+[cowork.vs1t]
+Chat
+
+[cowork.vs1d]
+You ask, it answers. You take the answer and go do the work yourself.
+
+[cowork.vs2t]
+Cowork
+
+[cowork.vs2d]
+You set the outcome and cadence once. It runs the task, on schedule, with your files and tools, and reports back.
+
+[cowork.1t]
+Plugins
+
+[cowork.1d]
+A bundled package of connectors, skills, and agents: a complete capability you install in one move.
+
+[cowork.2t]
+Headless browsing and your files
+
+[cowork.2d]
+It can navigate the web and gather what it needs, then read, organize, and produce real documents in your workspace.
+
+[cowork.3t]
+Runs on a cadence
+
+[cowork.3d]
+"Every morning at 7," "every Friday." Delegation that shows up without you asking.
+
+
+# ───────────── DEMO 2 (LinkedIn digest) ─────────────
+[demo2.title]
+A daily LinkedIn job digest, delivered to my inbox
+
+[demo2.sub]
+Delegating a repetitive, time-sensitive task: find relevant roles, summarize them, and email me a clean digest every morning, automatically.
+
+[demo2.show1]
+Setting the outcome and cadence
+
+[demo2.show2]
+Connecting browsing plus email
+
+[demo2.show3]
+Letting it run on its own
+
+[demo2.watch1]
+I describe the result, not the steps
+
+[demo2.watch2]
+It acts across tools for me
+
+[demo2.watch3]
+Zero effort once it's set up
+
+[demo2.take]
+Delegation means defining the outcome once, then receiving the value forever. This is your digital twin handling the busywork.
+
+
+# ───────────── LEVEL 3 DIVIDER ─────────────
+[l3.kicker]
+Level 3
+
+[l3.title]
+Build with *Claude Code*
+
+[l3.sub]
+No coding background? No problem. Turn plain English into working tools, and unlock what that means for non-technical builders.
+
+[l3.trigK]
+Reach for it when
+
+[l3.trigV]
+you want something custom that lives on its own (an app, a website), or a heavy analytical job that needs real computing power.
+
+
+# ───────────── CLAUDE CODE (vocabulary) ─────────────
+[code.title]
+You don't write code. You point Claude at what you want.
+
+[code.sub]
+Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here's the only vocabulary you need.
+
+[code.1t]
+project folder
+
+[code.1d]
+One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place.
+
+[code.2t]
+permissions
+
+[code.2d]
+You decide what Claude can do on its own versus what needs your sign-off. Your safety dial as autonomy goes up.
+
+[code.3t]
+CLAUDE.md
+
+[code.3d]
+A plain-text house-rules file. Set them globally (how you like to work) and per project (what this build needs).
+
+[code.4t]
+GitHub & repos
+
+[code.4d]
+The cloud home for what you build. A "repo" stores your project, its history, and lets you ship it to the world.
+
+
+# ───────────── DEMO 3 (masjid soccer app) ─────────────
+[demo3.title]
+A reservation app for the masjid soccer field
+
+[demo3.sub]
+From plain English to a working tool: building a real booking app, no code written by me, in service of the community.
+
+[demo3.show1]
+Describing the app I want
+
+[demo3.show2]
+Claude writing and running it
+
+[demo3.show3]
+Approving steps along the way
+
+[demo3.watch1]
+I speak in outcomes, not code
+
+[demo3.watch2]
+It handles the technical chain
+
+[demo3.watch3]
+Permissions keep me in control
+
+[demo3.take]
+Building is no longer gated by knowing how to code. It's gated by knowing what you want. That's the real unlock.
+
+
+# ───────────── GUARDRAILS ─────────────
+[guard.title]
+More autonomy means more responsibility
+
+[guard.sub]
+As you move up the levels, AI does more on its own. These three habits keep you in control the whole way.
+
+[guard.1t]
+Mind your data
+
+[guard.1d]
+Don't paste secrets, client-confidential info, or anything you wouldn't want stored. Know what's sensitive before you share it.
+
+[guard.1r]
+Rail: think before you paste
+
+[guard.2t]
+Verify the output
+
+[guard.2d]
+AI can sound confident and still be wrong. It "hallucinates." You finish, not it: check the facts, numbers, and claims that matter.
+
+[guard.2r]
+Rail: trust, then verify
+
+[guard.3t]
+Use permissions
+
+[guard.3d]
+The more it can act for you, the more you set boundaries. Approve big actions; let it run the safe, routine ones.
+
+[guard.3r]
+Rail: you hold the dial
+
+[guard.seg1]
+**Chat**answers only, low risk
+
+[guard.seg2]
+**Cowork**acts for you, set boundaries
+
+[guard.seg3]
+**Code**builds and runs, permission first
+
+
+# ───────────── RECAP ─────────────
+[recap.title]
+One framework, three levels
+
+[recap.1v]
+Ask
+
+[recap.1d]
+For one-off needs. Master prompting, projects, skills, and connectors.
+
+[recap.2v]
+Delegate
+
+[recap.2d]
+For repetitive, time-sensitive work. Hand off the outcome; it runs on a cadence.
+
+[recap.3v]
+Build
+
+[recap.3d]
+For custom tools and heavy analysis. Plain English becomes a working thing.
+
+[recap.callout]
+Remember the intentions and the first principles. AI is the means, not the end. Outcomes over hype. Finish, don't start. Garbage in, garbage out.
+
+[recap.foot]
+Now go out there and *experiment*.
+
+
+# ───────────── CLOSING ─────────────
+[close.title]
+Let's make AI work for *your* team
+
+[close.lede]
+If you want help finding where AI belongs in your work, and building it, that's exactly what Atmit Labs does.
+
+[close.cta1h]
+Talk to me
+
+[close.cta1v]
+hello@atmitlabs.ai
+
+[close.cta2h]
+What we do
+
+[close.cta2v]
+AI and automation, made intuitive
+
+[close.cta3h]
+Take home
+
+[close.cta3v]
+Pick one task this week, climb one level
+
+[close.tagline]
+Automation and tech, made intuitive.

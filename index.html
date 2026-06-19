@@ -31,7 +31,7 @@
   --grad-soft:  linear-gradient(120deg, rgba(39,170,225,0.16) 0%, rgba(10,210,124,0.16) 100%);
   --ease:       cubic-bezier(.22,.61,.36,1);
   /* z-scale */
-  --z-nav: 100; --z-indicator: 90;
+  --z-nav: 100; --z-indicator: 90; --z-banner: 95;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -64,6 +64,10 @@ nav.scrolled{border-bottom-color:var(--line);}
 }
 .present-btn:hover{filter:brightness(1.08);}
 .present-btn:active{transform:scale(.97);}
+
+/* ── Copy-load banner ── */
+.copy-banner{position:fixed;top:62px;left:0;right:0;z-index:var(--z-banner);background:#3a2a0a;color:#ffd9a0;font-size:.8rem;text-align:center;padding:.5rem 1rem;border-bottom:1px solid rgba(232,154,44,0.45);font-family:'Hanken Grotesk',sans-serif;}
+html.present-mode .copy-banner{display:none;}
 
 /* ── Slide base ── */
 .slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:6.5rem 3rem 4rem;position:relative;}
@@ -132,14 +136,6 @@ nav.scrolled{border-bottom-color:var(--line);}
 .cred-line span{font-size:1rem;color:var(--gray-soft);}
 .cred-line b{font-family:'Poppins';color:var(--teal-ink);font-weight:700;}
 
-/* ── 3 · Agenda ── */
-.agenda{display:flex;flex-direction:column;margin-top:1.6rem;}
-.agenda-row{display:grid;grid-template-columns:54px 1fr;gap:1.2rem;align-items:baseline;padding:1rem 0;border-bottom:1px solid var(--line-2);}
-.agenda-row:last-child{border-bottom:none;}
-.agenda-row .n{font-family:'JetBrains Mono';font-weight:600;font-size:1rem;color:var(--green);}
-.agenda-row .t{font-family:'Poppins';font-weight:600;font-size:1.18rem;color:var(--white);}
-.agenda-row .d{font-size:.92rem;color:rgba(255,255,255,0.58);margin-top:.1rem;}
-
 /* ── 4/5 · Intention + Bismillah ── */
 .lead-statement{font-size:clamp(2.1rem,4.6vw,3.2rem);font-family:'Poppins';font-weight:700;line-height:1.12;letter-spacing:-.025em;color:var(--white);margin-bottom:1.6rem;max-width:18ch;}
 .prompt-q{font-size:1.32rem;line-height:1.5;font-family:'Poppins';font-weight:500;max-width:64ch;color:rgba(255,255,255,0.9);margin-bottom:1.8rem;}
@@ -186,7 +182,7 @@ nav.scrolled{border-bottom-color:var(--line);}
 .divider .trigger .k{font-family:'Poppins';font-weight:700;color:var(--green);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;padding-top:.2rem;}
 .divider .trigger .v{font-size:1.02rem;color:rgba(255,255,255,0.85);line-height:1.5;}
 
-/* ── Feature list (icon rows) ── */
+/* ── Feature list ── */
 .feature-list{display:flex;flex-direction:column;gap:0;margin-top:1.5rem;}
 .feature{border-top:1px solid var(--line-dark);padding:1.05rem 0;}
 .dark .feature{border-top-color:var(--line);}
@@ -240,7 +236,6 @@ nav.scrolled{border-bottom-color:var(--line);}
 
 .callout{margin-top:1.8rem;background:var(--grad-soft);border:1px solid rgba(10,210,124,0.28);border-radius:14px;padding:1.1rem 1.4rem;font-size:1.02rem;line-height:1.55;color:#0c2a25;display:flex;gap:.85rem;align-items:flex-start;}
 .dark .callout{color:rgba(255,255,255,0.9);}
-.callout .ci{font-size:1.2rem;flex-shrink:0;}
 .callout b{color:var(--teal-ink);}
 .dark .callout b{color:var(--green);}
 
@@ -348,14 +343,14 @@ html.present-mode footer{display:none;}
 <header class="hero" id="top">
   <div class="hero-inner">
     <div>
-      <span class="kicker-pill"><span class="dot"></span>Texas AI Tech Summit · Workshop</span>
-      <h1>From Chat to Code</h1>
-      <p class="lede">The three levels of AI that actually matter, and how to climb them. A hands-on journey through the Claude ecosystem.</p>
+      <span class="kicker-pill"><span class="dot"></span><span data-copy="hero.badge">Texas AI Tech Summit · Workshop</span></span>
+      <h1 data-copy="hero.title">From Chat to Code</h1>
+      <p class="lede" data-copy="hero.lede">The three levels of AI that actually matter, and how to climb them. A hands-on journey through the Claude ecosystem.</p>
       <div class="hero-presenter">
         <img src="assets/headshot.jpeg" alt="Ayman Kotob">
         <div>
-          <div class="pname">Ayman Kotob</div>
-          <div class="prole">Founder, Atmit Labs · <em>Automation and tech, made intuitive</em></div>
+          <div class="pname" data-copy="hero.name">Ayman Kotob</div>
+          <div class="prole" data-copy="hero.role">Founder, Atmit Labs · _Automation and tech, made intuitive_</div>
         </div>
       </div>
       <div class="hero-hint">Press <b>P</b> to present · use ←/→ to navigate</div>
@@ -370,15 +365,15 @@ html.present-mode footer{display:none;}
     <div class="about-grid">
       <div class="about-photo reveal zoom">
         <img src="assets/headshot.jpeg" alt="Ayman Kotob">
-        <span class="ribbon">Atmit Labs</span>
+        <span class="ribbon" data-copy="about.ribbon">Atmit Labs</span>
       </div>
       <div>
-        <p class="about-lead reveal d1">I help lean teams turn AI from a buzzword into measurable ROI.</p>
-        <p class="about-body reveal d2">I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and habits that give small teams the leverage of much bigger ones.</p>
+        <p class="about-lead reveal d1" data-copy="about.lead">I help lean teams turn AI from a buzzword into measurable ROI.</p>
+        <p class="about-body reveal d2" data-copy="about.body">I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and habits that give small teams the leverage of much bigger ones.</p>
         <div class="cred-line reveal d3">
-          <span><b>One</b> framework you'll keep</span>
-          <span><b>Zero</b> code required from you</span>
-          <span><b>Three</b> live demos today</span>
+          <span data-copy="about.cred1">**One** framework you'll keep</span>
+          <span data-copy="about.cred2">**Zero** code required from you</span>
+          <span data-copy="about.cred3">**Three** live demos today</span>
         </div>
       </div>
     </div>
@@ -388,241 +383,241 @@ html.present-mode footer{display:none;}
 <!-- 3 · INTENTION -->
 <section class="slide dark" id="intention">
   <div class="slide-inner">
-    <h2 class="lead-statement reveal">AI is the <span class="accent">means</span>, not the end.</h2>
-    <p class="prompt-q reveal d1">Quick gut-check: why are you really here today? What outcome are you hoping AI helps you reach?</p>
-    <p class="intention-note reveal d2">The ultimate intention is to be the best servants of Allah. AI is simply a <b>means</b>: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back.</p>
+    <h2 class="lead-statement reveal" data-copy="intention.title">AI is the *means*, not the end.</h2>
+    <p class="prompt-q reveal d1" data-copy="intention.q">Quick gut-check: why are you really here today? What outcome are you hoping AI helps you reach?</p>
+    <p class="intention-note reveal d2" data-copy="intention.note">The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back.</p>
   </div>
 </section>
 
-<!-- 5 · BISMILLAH -->
+<!-- 4 · BISMILLAH -->
 <section class="slide dark bismillah" id="bismillah">
   <div class="slide-inner center-stage">
-    <p class="small-label reveal">So we begin with intention</p>
-    <p class="arabic reveal d1">بِسْمِ اللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-    <p class="translit reveal d2">Bismillāh ir-Raḥmān ir-Raḥīm</p>
-    <p class="translation reveal d3">In the name of Allah, the Most Gracious, the Most Merciful. Let's start with a conscious <em>bismillah</em>.</p>
+    <p class="small-label reveal" data-copy="bismillah.label">So we begin with intention</p>
+    <p class="arabic reveal d1" data-copy="bismillah.arabic">بِسْمِ اللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+    <p class="translit reveal d2" data-copy="bismillah.translit">Bismillāh ir-Raḥmān ir-Raḥīm</p>
+    <p class="translation reveal d3" data-copy="bismillah.translation">In the name of Allah, the Most Gracious, the Most Merciful. Let's start with a conscious _bismillah_.</p>
   </div>
 </section>
 
-<!-- 6 · PRINCIPLES -->
+<!-- 5 · PRINCIPLES -->
 <section class="slide light warm" id="principles">
   <div class="slide-inner">
-    <h2 class="section-title reveal">Four AI first principles</h2>
-    <p class="section-sub reveal d1">The mindset that makes everything after this work.</p>
+    <h2 class="section-title reveal" data-copy="principles.title">Four AI first principles</h2>
+    <p class="section-sub reveal d1" data-copy="principles.sub">The mindset that makes everything after this work.</p>
     <div class="principles">
-      <div class="pr reveal d1"><span class="pr-n">1</span><div><h3>Give yourself grace</h3><p>You will not keep up with everything, and you don't need to. Pick what serves your goals and let the rest go.</p></div></div>
-      <div class="pr reveal d2"><span class="pr-n">2</span><div><h3>Outcomes, not AI for its own sake</h3><p>Start from the result you want. The best AI use is invisible: it's the hours you got back, not the tool you used.</p></div></div>
-      <div class="pr reveal d3"><span class="pr-n">3</span><div><h3>Use AI to finish, not to start</h3><p>Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment.</p></div></div>
-      <div class="pr reveal d4"><span class="pr-n">4</span><div><h3>Garbage in, garbage out</h3><p>AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you.</p></div></div>
+      <div class="pr reveal d1"><span class="pr-n">1</span><div><h3 data-copy="principles.1t">Give yourself grace</h3><p data-copy="principles.1d">You will not keep up with everything, and you don't need to. Pick what serves your goals and let the rest go.</p></div></div>
+      <div class="pr reveal d2"><span class="pr-n">2</span><div><h3 data-copy="principles.2t">Outcomes, not AI for its own sake</h3><p data-copy="principles.2d">Start from the result you want. The best AI use is invisible: it's the hours you got back, not the tool you used.</p></div></div>
+      <div class="pr reveal d3"><span class="pr-n">3</span><div><h3 data-copy="principles.3t">Use AI to finish, not to start</h3><p data-copy="principles.3d">Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment.</p></div></div>
+      <div class="pr reveal d4"><span class="pr-n">4</span><div><h3 data-copy="principles.4t">Garbage in, garbage out</h3><p data-copy="principles.4d">AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- 7 · THE MAP -->
+<!-- 6 · THE MAP -->
 <section class="slide dark alt" id="map">
   <div class="slide-inner">
-    <h2 class="section-title reveal">Ask, delegate, build</h2>
-    <p class="section-sub reveal d1">One framework, three levels. As you climb, AI does more on your behalf. We'll use the Claude ecosystem as the vehicle, but this mental model travels to any AI tool you'll ever use.</p>
+    <h2 class="section-title reveal" data-copy="map.title">Ask, delegate, build</h2>
+    <p class="section-sub reveal d1" data-copy="map.sub">One framework, three levels. As you climb, AI does more on your behalf. We'll use the Claude ecosystem as the vehicle, but this mental model travels to any AI tool you'll ever use.</p>
     <div class="spectrum">
-      <div class="lvl-col reveal d1"><div class="tag">Level 1 · Chat</div><div class="verb">Ask</div><div class="prod">Claude</div><div class="desc">You ask a question, it answers. The level almost everyone already knows.</div><div class="does"><b>It responds.</b> You stay in the driver's seat.</div></div>
-      <div class="lvl-col reveal d2"><div class="tag">Level 2 · Cowork</div><div class="verb">Delegate</div><div class="prod">Claude Cowork</div><div class="desc">You share an outcome and a cadence; it carries out the work for you.</div><div class="does"><b>It acts</b> inside Claude's world, on your behalf.</div></div>
-      <div class="lvl-col reveal d3"><div class="tag">Level 3 · Code</div><div class="verb">Build</div><div class="prod">Claude Code</div><div class="desc">You describe a tool in plain English; it builds, runs, and ships it.</div><div class="does"><b>It creates</b> a thing that lives on its own.</div></div>
+      <div class="lvl-col reveal d1"><div class="tag">Level 1 · Chat</div><div class="verb" data-copy="map.1verb">Ask</div><div class="prod" data-copy="map.1prod">Claude</div><div class="desc" data-copy="map.1desc">You ask a question, it answers. The level almost everyone already knows.</div><div class="does" data-copy="map.1does">**It responds.** You stay in the driver's seat.</div></div>
+      <div class="lvl-col reveal d2"><div class="tag">Level 2 · Cowork</div><div class="verb" data-copy="map.2verb">Delegate</div><div class="prod" data-copy="map.2prod">Claude Cowork</div><div class="desc" data-copy="map.2desc">You share an outcome and a cadence; it carries out the work for you.</div><div class="does" data-copy="map.2does">**It acts** inside Claude's world, on your behalf.</div></div>
+      <div class="lvl-col reveal d3"><div class="tag">Level 3 · Code</div><div class="verb" data-copy="map.3verb">Build</div><div class="prod" data-copy="map.3prod">Claude Code</div><div class="desc" data-copy="map.3desc">You describe a tool in plain English; it builds, runs, and ships it.</div><div class="does" data-copy="map.3does">**It creates** a thing that lives on its own.</div></div>
     </div>
-    <div class="spectrum-axis reveal d4"><span>Less autonomy</span><span class="bar"></span><span class="hi">More autonomy</span></div>
+    <div class="spectrum-axis reveal d4"><span data-copy="map.axisLo">Less autonomy</span><span class="bar"></span><span class="hi" data-copy="map.axisHi">More autonomy</span></div>
   </div>
 </section>
 
-<!-- 8 · LEVEL 1 DIVIDER -->
+<!-- 7 · LEVEL 1 DIVIDER -->
 <section class="slide divider" id="level1">
   <div class="divider-inner">
-    <div class="lvl-kicker reveal">Level 1</div>
-    <h2 class="big reveal from-left d1">Chat with <span class="accent">Claude</span></h2>
-    <p class="sub reveal d2">Ask a question, get an answer. This is the level most people already live in. Let's learn to get far more out of it.</p>
-    <div class="trigger reveal d3"><span class="k">Reach for it when</span><span class="v">you have a one-off need: a question to answer, something to draft, summarize, brainstorm, or understand right now.</span></div>
+    <div class="lvl-kicker reveal" data-copy="l1.kicker">Level 1</div>
+    <h2 class="big reveal from-left d1" data-copy="l1.title">Chat with *Claude*</h2>
+    <p class="sub reveal d2" data-copy="l1.sub">Ask a question, get an answer. This is the level most people already live in. Let's learn to get far more out of it.</p>
+    <div class="trigger reveal d3"><span class="k" data-copy="l1.trigK">Reach for it when</span><span class="v" data-copy="l1.trigV">you have a one-off need: a question to answer, something to draft, summarize, brainstorm, or understand right now.</span></div>
   </div>
 </section>
 
-<!-- 9 · PROMPTING -->
+<!-- 8 · PROMPTING -->
 <section class="slide light" id="prompting">
   <div class="slide-inner">
-    <h2 class="section-title reveal">What separates a mediocre prompt from a great one</h2>
+    <h2 class="section-title reveal" data-copy="prompt.title">What separates a mediocre prompt from a great one</h2>
     <div class="feature-list">
-      <div class="feature reveal d1"><div><div class="ft">Give it a role and a goal</div><div class="fd">"You're my marketing analyst. I want X for audience Y." Context turns a generic answer into a useful one.</div></div></div>
-      <div class="feature reveal d2"><div><div class="ft">Show, don't just tell</div><div class="fd">Paste examples, data, a past piece in your voice. AI matches what it can see.</div></div></div>
-      <div class="feature reveal d3"><div><div class="ft">Iterate; it's a conversation, not a vending machine</div><div class="fd">The first answer is a draft. Refine it: "tighter," "more skeptical," "explain it for a beginner."</div></div></div>
-      <div class="feature reveal d4"><div><div class="ft">Ask for the format you want</div><div class="fd">Table, bullets, email, three options. Tell it the shape of the output up front.</div></div></div>
+      <div class="feature reveal d1"><div><div class="ft" data-copy="prompt.1t">Give it a role and a goal</div><div class="fd" data-copy="prompt.1d">"You're my marketing analyst. I want X for audience Y." Context turns a generic answer into a useful one.</div></div></div>
+      <div class="feature reveal d2"><div><div class="ft" data-copy="prompt.2t">Show, don't just tell</div><div class="fd" data-copy="prompt.2d">Paste examples, data, a past piece in your voice. AI matches what it can see.</div></div></div>
+      <div class="feature reveal d3"><div><div class="ft" data-copy="prompt.3t">Iterate; it's a conversation, not a vending machine</div><div class="fd" data-copy="prompt.3d">The first answer is a draft. Refine it: "tighter," "more skeptical," "explain it for a beginner."</div></div></div>
+      <div class="feature reveal d4"><div><div class="ft" data-copy="prompt.4t">Ask for the format you want</div><div class="fd" data-copy="prompt.4d">Table, bullets, email, three options. Tell it the shape of the output up front.</div></div></div>
     </div>
-    <div class="callout reveal d5"><div><b>Pro move:</b> stuck on how to ask? Ask Claude to write the prompt for you. "Help me write a prompt that will get me…"</div></div>
+    <div class="callout reveal d5"><div data-copy="prompt.callout">**Pro move:** stuck on how to ask? Ask Claude to write the prompt for you. "Help me write a prompt that will get me…"</div></div>
   </div>
 </section>
 
-<!-- 10 · GET MORE OUT OF CHAT (merged: building blocks + power moves) -->
+<!-- 9 · GET MORE OUT OF CHAT -->
 <section class="slide light warm" id="blocks">
   <div class="slide-inner">
-    <h2 class="section-title reveal">Get more out of <span class="accent">Chat</span></h2>
-    <p class="section-sub reveal d1">Two ways past a single question: customize Claude around how you work, and use the modes most people never touch.</p>
+    <h2 class="section-title reveal" data-copy="chat.title">Get more out of *Chat*</h2>
+    <p class="section-sub reveal d1" data-copy="chat.sub">Two ways past a single question: customize Claude around how you work, and use the modes most people never touch.</p>
     <div class="duo">
       <div class="duo-col reveal d2">
-        <h3 class="duo-h">Customize it</h3>
+        <h3 class="duo-h" data-copy="chat.customH">Customize it</h3>
         <dl class="defs">
-          <div class="def"><dt><span class="dot"></span>Projects</dt><dd>A workspace that remembers your context and files, so you stop re-explaining yourself.</dd></div>
-          <div class="def"><dt><span class="dot"></span>Skills</dt><dd>Reusable playbooks you teach once, then trigger on demand (a Socratic tutor, your brand-voice writer).</dd></div>
-          <div class="def"><dt><span class="dot"></span>Connectors (MCP)</dt><dd>Plug Claude into your real tools (Drive, Gmail, calendar) so it works with your data.</dd></div>
+          <div class="def"><dt><span class="dot"></span><span data-copy="chat.projT">Projects</span></dt><dd data-copy="chat.projD">A workspace that remembers your context and files, so you stop re-explaining yourself.</dd></div>
+          <div class="def"><dt><span class="dot"></span><span data-copy="chat.skillT">Skills</span></dt><dd data-copy="chat.skillD">Reusable playbooks you teach once, then trigger on demand (a Socratic tutor, your brand-voice writer).</dd></div>
+          <div class="def"><dt><span class="dot"></span><span data-copy="chat.connT">Connectors (MCP)</span></dt><dd data-copy="chat.connD">Plug Claude into your real tools (Drive, Gmail, calendar) so it works with your data.</dd></div>
         </dl>
       </div>
       <div class="duo-col reveal d3">
-        <h3 class="duo-h">Power moves</h3>
+        <h3 class="duo-h" data-copy="chat.powerH">Power moves</h3>
         <dl class="defs">
-          <div class="def"><dt><span class="dot"></span>Use AI to understand AI</dt><dd>Don't know a term? Ask Claude to explain it simply, with an example from your world.</dd></div>
-          <div class="def"><dt><span class="dot"></span>Multimodal</dt><dd>Drop in a screenshot, a whiteboard photo, a PDF. It sees images, and builds from them.</dd></div>
-          <div class="def"><dt><span class="dot"></span>Voice &amp; Artifacts</dt><dd>Talk to it to rehearse or roleplay; ask for a calculator or chart and watch it render live.</dd></div>
+          <div class="def"><dt><span class="dot"></span><span data-copy="chat.uaT">Use AI to understand AI</span></dt><dd data-copy="chat.uaD">Don't know a term? Ask Claude to explain it simply, with an example from your world.</dd></div>
+          <div class="def"><dt><span class="dot"></span><span data-copy="chat.mmT">Multimodal</span></dt><dd data-copy="chat.mmD">Drop in a screenshot, a whiteboard photo, a PDF. It sees images, and builds from them.</dd></div>
+          <div class="def"><dt><span class="dot"></span><span data-copy="chat.vaT">Voice &amp; Artifacts</span></dt><dd data-copy="chat.vaD">Talk to it to rehearse or roleplay; ask for a calculator or chart and watch it render live.</dd></div>
         </dl>
       </div>
     </div>
-    <p class="bridge-note reveal d4"><b>These building blocks carry with you</b> to Levels 2 and 3. Learn them once, use them everywhere.</p>
+    <p class="bridge-note reveal d4" data-copy="chat.bridge">**These building blocks carry with you** to Levels 2 and 3. Learn them once, use them everywhere.</p>
   </div>
 </section>
 
-<!-- 11 · DEMO 1 -->
+<!-- 10 · DEMO 1 -->
 <section class="slide demo" id="demo1">
   <div class="demo-inner">
     <span class="demo-badge reveal zoom"><span class="pulse"></span>Live Demo · Level 1</span>
-    <h2 class="reveal d1">Building a Socratic learning skill</h2>
-    <p class="demo-sub reveal d2">Teaching Claude a reusable playbook once, so it teaches me anything by asking questions instead of just handing over answers.</p>
+    <h2 class="reveal d1" data-copy="demo1.title">Building a Socratic learning skill</h2>
+    <p class="demo-sub reveal d2" data-copy="demo1.sub">Teaching Claude a reusable playbook once, so it teaches me anything by asking questions instead of just handing over answers.</p>
     <div class="demo-cols">
-      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li>Creating a custom Skill from scratch</li><li>Giving it a teaching style and rules</li><li>Triggering it on a real topic</li></ul></div>
-      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li>How little "code" is involved</li><li>How it reuses across chats</li><li>How context makes it mine</li></ul></div>
-      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p>A skill is a habit you teach once and reuse forever: your first taste of customizing AI around how you think.</p></div>
+      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li data-copy="demo1.show1">Creating a custom Skill from scratch</li><li data-copy="demo1.show2">Giving it a teaching style and rules</li><li data-copy="demo1.show3">Triggering it on a real topic</li></ul></div>
+      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li data-copy="demo1.watch1">How little "code" is involved</li><li data-copy="demo1.watch2">How it reuses across chats</li><li data-copy="demo1.watch3">How context makes it mine</li></ul></div>
+      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p data-copy="demo1.take">A skill is a habit you teach once and reuse forever: your first taste of customizing AI around how you think.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 13 · LEVEL 2 DIVIDER -->
+<!-- 11 · LEVEL 2 DIVIDER -->
 <section class="slide divider" id="level2">
   <div class="divider-inner">
-    <div class="lvl-kicker reveal">Level 2</div>
-    <h2 class="big reveal from-left d1">Delegate with <span class="accent">Cowork</span></h2>
-    <p class="sub reveal d2">Stop doing work your AI should be doing. Share an outcome and a cadence, and it handles the rest.</p>
-    <div class="trigger reveal d3"><span class="k">Reach for it when</span><span class="v">a task is repetitive, time-sensitive, or drowning in data: the kind of thing you'd hand to a capable assistant.</span></div>
+    <div class="lvl-kicker reveal" data-copy="l2.kicker">Level 2</div>
+    <h2 class="big reveal from-left d1" data-copy="l2.title">Delegate with *Cowork*</h2>
+    <p class="sub reveal d2" data-copy="l2.sub">Stop doing work your AI should be doing. Share an outcome and a cadence, and it handles the rest.</p>
+    <div class="trigger reveal d3"><span class="k" data-copy="l2.trigK">Reach for it when</span><span class="v" data-copy="l2.trigV">a task is repetitive, time-sensitive, or drowning in data: the kind of thing you'd hand to a capable assistant.</span></div>
   </div>
 </section>
 
-<!-- 14 · COWORK -->
+<!-- 12 · COWORK -->
 <section class="slide light" id="cowork">
   <div class="slide-inner">
-    <h2 class="section-title reveal">The leap: it does things <span class="accent">on your behalf</span></h2>
+    <h2 class="section-title reveal" data-copy="cowork.title">The leap: it does things *on your behalf*</h2>
     <div class="vs-grid">
-      <div class="vs-card reveal d1"><div class="vh">Level 1</div><h4>Chat</h4><p>You ask, it answers. You take the answer and go do the work yourself.</p></div>
+      <div class="vs-card reveal d1"><div class="vh">Level 1</div><h4 data-copy="cowork.vs1t">Chat</h4><p data-copy="cowork.vs1d">You ask, it answers. You take the answer and go do the work yourself.</p></div>
       <div class="vs-mid reveal d2">→</div>
-      <div class="vs-card reveal d3"><div class="vh">Level 2</div><h4>Cowork</h4><p>You set the outcome and cadence once. It runs the task, on schedule, with your files and tools, and reports back.</p></div>
+      <div class="vs-card reveal d3"><div class="vh">Level 2</div><h4 data-copy="cowork.vs2t">Cowork</h4><p data-copy="cowork.vs2d">You set the outcome and cadence once. It runs the task, on schedule, with your files and tools, and reports back.</p></div>
     </div>
     <div class="feature-list">
-      <div class="feature reveal d3"><div><div class="ft">Plugins</div><div class="fd">A bundled package of connectors, skills, and agents: a complete capability you install in one move.</div></div></div>
-      <div class="feature reveal d4"><div><div class="ft">Headless browsing and your files</div><div class="fd">It can navigate the web and gather what it needs, then read, organize, and produce real documents in your workspace.</div></div></div>
-      <div class="feature reveal d5"><div><div class="ft">Runs on a cadence</div><div class="fd">"Every morning at 7," "every Friday." Delegation that shows up without you asking.</div></div></div>
+      <div class="feature reveal d3"><div><div class="ft" data-copy="cowork.1t">Plugins</div><div class="fd" data-copy="cowork.1d">A bundled package of connectors, skills, and agents: a complete capability you install in one move.</div></div></div>
+      <div class="feature reveal d4"><div><div class="ft" data-copy="cowork.2t">Headless browsing and your files</div><div class="fd" data-copy="cowork.2d">It can navigate the web and gather what it needs, then read, organize, and produce real documents in your workspace.</div></div></div>
+      <div class="feature reveal d5"><div><div class="ft" data-copy="cowork.3t">Runs on a cadence</div><div class="fd" data-copy="cowork.3d">"Every morning at 7," "every Friday." Delegation that shows up without you asking.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- 15 · DEMO 2 -->
+<!-- 13 · DEMO 2 -->
 <section class="slide demo" id="demo2">
   <div class="demo-inner">
     <span class="demo-badge reveal zoom"><span class="pulse"></span>Live Demo · Level 2</span>
-    <h2 class="reveal d1">A daily LinkedIn job digest, delivered to my inbox</h2>
-    <p class="demo-sub reveal d2">Delegating a repetitive, time-sensitive task: find relevant roles, summarize them, and email me a clean digest every morning, automatically.</p>
+    <h2 class="reveal d1" data-copy="demo2.title">A daily LinkedIn job digest, delivered to my inbox</h2>
+    <p class="demo-sub reveal d2" data-copy="demo2.sub">Delegating a repetitive, time-sensitive task: find relevant roles, summarize them, and email me a clean digest every morning, automatically.</p>
     <div class="demo-cols">
-      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li>Setting the outcome and cadence</li><li>Connecting browsing plus email</li><li>Letting it run on its own</li></ul></div>
-      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li>I describe the result, not the steps</li><li>It acts across tools for me</li><li>Zero effort once it's set up</li></ul></div>
-      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p>Delegation means defining the outcome once, then receiving the value forever. This is your digital twin handling the busywork.</p></div>
+      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li data-copy="demo2.show1">Setting the outcome and cadence</li><li data-copy="demo2.show2">Connecting browsing plus email</li><li data-copy="demo2.show3">Letting it run on its own</li></ul></div>
+      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li data-copy="demo2.watch1">I describe the result, not the steps</li><li data-copy="demo2.watch2">It acts across tools for me</li><li data-copy="demo2.watch3">Zero effort once it's set up</li></ul></div>
+      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p data-copy="demo2.take">Delegation means defining the outcome once, then receiving the value forever. This is your digital twin handling the busywork.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 16 · LEVEL 3 DIVIDER -->
+<!-- 14 · LEVEL 3 DIVIDER -->
 <section class="slide divider" id="level3">
   <div class="divider-inner">
-    <div class="lvl-kicker reveal">Level 3</div>
-    <h2 class="big reveal from-left d1">Build with <span class="accent">Claude Code</span></h2>
-    <p class="sub reveal d2">No coding background? No problem. Turn plain English into working tools, and unlock what that means for non-technical builders.</p>
-    <div class="trigger reveal d3"><span class="k">Reach for it when</span><span class="v">you want something custom that lives on its own (an app, a website), or a heavy analytical job that needs real computing power.</span></div>
+    <div class="lvl-kicker reveal" data-copy="l3.kicker">Level 3</div>
+    <h2 class="big reveal from-left d1" data-copy="l3.title">Build with *Claude Code*</h2>
+    <p class="sub reveal d2" data-copy="l3.sub">No coding background? No problem. Turn plain English into working tools, and unlock what that means for non-technical builders.</p>
+    <div class="trigger reveal d3"><span class="k" data-copy="l3.trigK">Reach for it when</span><span class="v" data-copy="l3.trigV">you want something custom that lives on its own (an app, a website), or a heavy analytical job that needs real computing power.</span></div>
   </div>
 </section>
 
-<!-- 16 · CODE: HOW IT WORKS + VOCABULARY (merged terminal style) -->
+<!-- 15 · CODE: HOW IT WORKS + VOCABULARY -->
 <section class="slide dark alt" id="code-concepts">
   <div class="slide-inner">
-    <h2 class="section-title reveal">You don't write code. You point Claude at what you want.</h2>
-    <p class="section-sub reveal d1">Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here's the only vocabulary you need.</p>
+    <h2 class="section-title reveal" data-copy="code.title">You don't write code. You point Claude at what you want.</h2>
+    <p class="section-sub reveal d1" data-copy="code.sub">Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here's the only vocabulary you need.</p>
     <div class="terminal reveal d2">
       <div class="terminal-bar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">claude-code · your-project</span></div>
       <div class="terminal-body">
-        <div class="tline"><div class="cmd"><span class="prompt">$</span> project folder</div><p>One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place.</p></div>
-        <div class="tline"><div class="cmd"><span class="prompt">$</span> permissions</div><p>You decide what Claude can do on its own versus what needs your sign-off. Your safety dial as autonomy goes up.</p></div>
-        <div class="tline"><div class="cmd"><span class="prompt">$</span> CLAUDE.md</div><p>A plain-text house-rules file. Set them globally (how you like to work) and per project (what this build needs).</p></div>
-        <div class="tline"><div class="cmd"><span class="prompt">$</span> GitHub &amp; repos</div><p>The cloud home for what you build. A "repo" stores your project, its history, and lets you ship it to the world.</p></div>
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> <span data-copy="code.1t">project folder</span></div><p data-copy="code.1d">One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place.</p></div>
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> <span data-copy="code.2t">permissions</span></div><p data-copy="code.2d">You decide what Claude can do on its own versus what needs your sign-off. Your safety dial as autonomy goes up.</p></div>
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> <span data-copy="code.3t">CLAUDE.md</span></div><p data-copy="code.3d">A plain-text house-rules file. Set them globally (how you like to work) and per project (what this build needs).</p></div>
+        <div class="tline"><div class="cmd"><span class="prompt">$</span> <span data-copy="code.4t">GitHub &amp; repos</span></div><p data-copy="code.4d">The cloud home for what you build. A "repo" stores your project, its history, and lets you ship it to the world.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 19 · DEMO 3 -->
+<!-- 16 · DEMO 3 -->
 <section class="slide demo" id="demo3">
   <div class="demo-inner">
     <span class="demo-badge reveal zoom"><span class="pulse"></span>Live Demo · Level 3</span>
-    <h2 class="reveal d1">A reservation app for the masjid soccer field</h2>
-    <p class="demo-sub reveal d2">From plain English to a working tool: building a real booking app, no code written by me, in service of the community.</p>
+    <h2 class="reveal d1" data-copy="demo3.title">A reservation app for the masjid soccer field</h2>
+    <p class="demo-sub reveal d2" data-copy="demo3.sub">From plain English to a working tool: building a real booking app, no code written by me, in service of the community.</p>
     <div class="demo-cols">
-      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li>Describing the app I want</li><li>Claude writing and running it</li><li>Approving steps along the way</li></ul></div>
-      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li>I speak in outcomes, not code</li><li>It handles the technical chain</li><li>Permissions keep me in control</li></ul></div>
-      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p>Building is no longer gated by knowing how to code. It's gated by knowing what you want. That's the real unlock.</p></div>
+      <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul><li data-copy="demo3.show1">Describing the app I want</li><li data-copy="demo3.show2">Claude writing and running it</li><li data-copy="demo3.show3">Approving steps along the way</li></ul></div>
+      <div class="demo-col reveal d3"><div class="h">Watch for</div><ul><li data-copy="demo3.watch1">I speak in outcomes, not code</li><li data-copy="demo3.watch2">It handles the technical chain</li><li data-copy="demo3.watch3">Permissions keep me in control</li></ul></div>
+      <div class="demo-col reveal d4"><div class="h">The takeaway</div><p data-copy="demo3.take">Building is no longer gated by knowing how to code. It's gated by knowing what you want. That's the real unlock.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 20 · GUARDRAILS -->
+<!-- 17 · GUARDRAILS -->
 <section class="slide dark" id="guardrails">
   <div class="slide-inner">
-    <h2 class="section-title reveal">More autonomy means more responsibility</h2>
-    <p class="section-sub reveal d1">As you move up the levels, AI does more on its own. These three habits keep you in control the whole way.</p>
+    <h2 class="section-title reveal" data-copy="guard.title">More autonomy means more responsibility</h2>
+    <p class="section-sub reveal d1" data-copy="guard.sub">As you move up the levels, AI does more on its own. These three habits keep you in control the whole way.</p>
     <div class="guards">
-      <div class="g reveal d2"><h4>Mind your data</h4><p>Don't paste secrets, client-confidential info, or anything you wouldn't want stored. Know what's sensitive before you share it.</p><div class="rail">Rail: think before you paste</div></div>
-      <div class="g reveal d3"><h4>Verify the output</h4><p>AI can sound confident and still be wrong. It "hallucinates." You finish, not it: check the facts, numbers, and claims that matter.</p><div class="rail">Rail: trust, then verify</div></div>
-      <div class="g reveal d4"><h4>Use permissions</h4><p>The more it can act for you, the more you set boundaries. Approve big actions; let it run the safe, routine ones.</p><div class="rail">Rail: you hold the dial</div></div>
+      <div class="g reveal d2"><h4 data-copy="guard.1t">Mind your data</h4><p data-copy="guard.1d">Don't paste secrets, client-confidential info, or anything you wouldn't want stored. Know what's sensitive before you share it.</p><div class="rail" data-copy="guard.1r">Rail: think before you paste</div></div>
+      <div class="g reveal d3"><h4 data-copy="guard.2t">Verify the output</h4><p data-copy="guard.2d">AI can sound confident and still be wrong. It "hallucinates." You finish, not it: check the facts, numbers, and claims that matter.</p><div class="rail" data-copy="guard.2r">Rail: trust, then verify</div></div>
+      <div class="g reveal d4"><h4 data-copy="guard.3t">Use permissions</h4><p data-copy="guard.3d">The more it can act for you, the more you set boundaries. Approve big actions; let it run the safe, routine ones.</p><div class="rail" data-copy="guard.3r">Rail: you hold the dial</div></div>
     </div>
     <div class="autonomy-strip reveal d5">
-      <div class="seg"><b>Chat</b>answers only, low risk</div>
-      <div class="seg"><b>Cowork</b>acts for you, set boundaries</div>
-      <div class="seg"><b>Code</b>builds and runs, permission first</div>
+      <div class="seg" data-copy="guard.seg1">**Chat**answers only, low risk</div>
+      <div class="seg" data-copy="guard.seg2">**Cowork**acts for you, set boundaries</div>
+      <div class="seg" data-copy="guard.seg3">**Code**builds and runs, permission first</div>
     </div>
   </div>
 </section>
 
-<!-- 21 · RECAP -->
+<!-- 18 · RECAP -->
 <section class="slide dark alt" id="recap">
   <div class="slide-inner">
-    <h2 class="section-title reveal">One framework, three levels</h2>
+    <h2 class="section-title reveal" data-copy="recap.title">One framework, three levels</h2>
     <div class="recap-strip">
-      <div class="recap-item reveal d1"><div class="rn">Level 1 · Chat</div><div class="rv">Ask</div><div class="rd">For one-off needs. Master prompting, projects, skills, and connectors.</div></div>
-      <div class="recap-item reveal d2"><div class="rn">Level 2 · Cowork</div><div class="rv">Delegate</div><div class="rd">For repetitive, time-sensitive work. Hand off the outcome; it runs on a cadence.</div></div>
-      <div class="recap-item reveal d3"><div class="rn">Level 3 · Code</div><div class="rv">Build</div><div class="rd">For custom tools and heavy analysis. Plain English becomes a working thing.</div></div>
+      <div class="recap-item reveal d1"><div class="rn">Level 1 · Chat</div><div class="rv" data-copy="recap.1v">Ask</div><div class="rd" data-copy="recap.1d">For one-off needs. Master prompting, projects, skills, and connectors.</div></div>
+      <div class="recap-item reveal d2"><div class="rn">Level 2 · Cowork</div><div class="rv" data-copy="recap.2v">Delegate</div><div class="rd" data-copy="recap.2d">For repetitive, time-sensitive work. Hand off the outcome; it runs on a cadence.</div></div>
+      <div class="recap-item reveal d3"><div class="rn">Level 3 · Code</div><div class="rv" data-copy="recap.3v">Build</div><div class="rd" data-copy="recap.3d">For custom tools and heavy analysis. Plain English becomes a working thing.</div></div>
     </div>
-    <div class="callout reveal d4"><div>Remember the intentions and the first principles. AI is the means, not the end. Outcomes over hype. Finish, don't start. Garbage in, garbage out.</div></div>
-    <p class="recap-foot reveal d5">Now go out there and <span class="accent">experiment</span>.</p>
+    <div class="callout reveal d4"><div data-copy="recap.callout">Remember the intentions and the first principles. AI is the means, not the end. Outcomes over hype. Finish, don't start. Garbage in, garbage out.</div></div>
+    <p class="recap-foot reveal d5" data-copy="recap.foot">Now go out there and *experiment*.</p>
   </div>
 </section>
 
-<!-- 22 · CLOSE -->
+<!-- 19 · CLOSE -->
 <section class="slide close" id="close">
   <div class="slide-inner center-stage">
     <img src="assets/atmit-logo-onDark.png" alt="Atmit Labs" class="logo reveal">
-    <h2 class="reveal d1">Let's make AI work for <span class="accent">your</span> team</h2>
-    <p class="lede reveal d2">If you want help finding where AI belongs in your work, and building it, that's exactly what Atmit Labs does.</p>
+    <h2 class="reveal d1" data-copy="close.title">Let's make AI work for *your* team</h2>
+    <p class="lede reveal d2" data-copy="close.lede">If you want help finding where AI belongs in your work, and building it, that's exactly what Atmit Labs does.</p>
     <div class="cta-row reveal d3">
-      <div class="cta-item"><div class="ch">Talk to me</div><div class="cv">hello@atmitlabs.ai</div></div>
-      <div class="cta-item"><div class="ch">What we do</div><div class="cv">AI and automation, made intuitive</div></div>
-      <div class="cta-item"><div class="ch">Take home</div><div class="cv">Pick one task this week, climb one level</div></div>
+      <div class="cta-item"><div class="ch" data-copy="close.cta1h">Talk to me</div><div class="cv" data-copy="close.cta1v">hello@atmitlabs.ai</div></div>
+      <div class="cta-item"><div class="ch" data-copy="close.cta2h">What we do</div><div class="cv" data-copy="close.cta2v">AI and automation, made intuitive</div></div>
+      <div class="cta-item"><div class="ch" data-copy="close.cta3h">Take home</div><div class="cv" data-copy="close.cta3v">Pick one task this week, climb one level</div></div>
     </div>
-    <p class="tagline reveal d4">Automation and tech, made intuitive.</p>
+    <p class="tagline reveal d4" data-copy="close.tagline">Automation and tech, made intuitive.</p>
   </div>
 </section>
 
@@ -634,6 +629,43 @@ html.present-mode footer{display:none;}
 <div class="slide-indicator" id="slideIndicator">1 / 19</div>
 
 <script>
+/* ── Copy loader: pull editable text from copy.txt, fall back to built-in defaults ── */
+function renderCopyMarkup(raw){
+  const esc = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return esc
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g,'<span class="accent">$1</span>')
+    .replace(/_([^_]+)_/g,'<em>$1</em>');
+}
+function parseCopy(text){
+  const map={}; let key=null, buf=[];
+  text.split(/\r?\n/).forEach(line=>{
+    const m=line.match(/^\[([^\]]+)\]\s*$/);
+    if(m){ if(key!==null) map[key]=buf.join('\n').trim(); key=m[1].trim(); buf=[]; }
+    else if(line.trim().startsWith('#')){ /* comment line, ignore */ }
+    else if(key!==null){ buf.push(line); }
+  });
+  if(key!==null) map[key]=buf.join('\n').trim();
+  return map;
+}
+function applyCopy(map){
+  document.querySelectorAll('[data-copy]').forEach(el=>{
+    const k=el.getAttribute('data-copy');
+    if(Object.prototype.hasOwnProperty.call(map,k) && map[k]!=='') el.innerHTML=renderCopyMarkup(map[k]);
+  });
+}
+function showCopyBanner(msg){
+  if(document.documentElement.classList.contains('present-mode')) return;
+  if(document.querySelector('.copy-banner')) return;
+  const b=document.createElement('div'); b.className='copy-banner'; b.textContent=msg;
+  document.body.appendChild(b);
+}
+fetch('copy.txt',{cache:'no-store'})
+  .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+  .then(t=>applyCopy(parseCopy(t)))
+  .catch(()=>showCopyBanner('Heads up: couldn’t load copy.txt, so the deck is showing its built-in text.'));
+
+/* ── Reveal on scroll ── */
 const supportsReveal = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (supportsReveal) {
   const observer = new IntersectionObserver((entries)=>{
