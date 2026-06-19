@@ -358,6 +358,7 @@ html.present-mode footer{display:none;}
 <script>
 /* tiny markup: *accent*  **bold**  _italic_  (HTML is escaped first) */
 function fmt(raw){
+  if(raw===false||raw===null||raw===undefined) return '';
   const e=String(raw).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   return e
     .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
@@ -366,6 +367,8 @@ function fmt(raw){
     .replace(/\n/g,'<br>');
 }
 const li=arr=>arr.map(x=>`<li>${fmt(x)}</li>`).join('');
+/* opt: render the html only if the value is set (false/empty/missing => nothing) */
+const opt=(val,html)=> (val===false||val===null||val===undefined||val==='') ? '' : html;
 
 /* ── one template per slide type ── */
 const T = {
@@ -419,7 +422,7 @@ const T = {
   principles:(s)=>`<section class="slide light warm" id="${s.id}">
     <div class="slide-inner">
       <h2 class="section-title reveal">${fmt(s.title)}</h2>
-      <p class="section-sub reveal d1">${fmt(s.sub)}</p>
+      ${opt(s.sub,`<p class="section-sub reveal d1">${fmt(s.sub)}</p>`)}
       <div class="principles">${s.items.map((it,i)=>`<div class="pr reveal d${i+1}"><span class="pr-n">${i+1}</span><div><h3>${fmt(it.t)}</h3><p>${fmt(it.d)}</p></div></div>`).join('')}</div>
     </div>
   </section>`,
@@ -427,7 +430,7 @@ const T = {
   map:(s)=>`<section class="slide dark alt" id="${s.id}">
     <div class="slide-inner">
       <h2 class="section-title reveal">${fmt(s.title)}</h2>
-      <p class="section-sub reveal d1">${fmt(s.sub)}</p>
+      ${opt(s.sub,`<p class="section-sub reveal d1">${fmt(s.sub)}</p>`)}
       <div class="spectrum">${s.cols.map((c,i)=>`<div class="lvl-col reveal d${i+1}"><div class="tag">${fmt(c.tag)}</div><div class="verb">${fmt(c.verb)}</div><div class="prod">${fmt(c.prod)}</div><div class="desc">${fmt(c.desc)}</div><div class="does">${fmt(c.does)}</div></div>`).join('')}</div>
       <div class="spectrum-axis reveal d4"><span>${fmt(s.axisLo)}</span><span class="bar"></span><span class="hi">${fmt(s.axisHi)}</span></div>
     </div>
@@ -437,7 +440,7 @@ const T = {
     <div class="divider-inner">
       <div class="lvl-kicker reveal">${fmt(s.kicker)}</div>
       <h2 class="big reveal from-left d1">${fmt(s.title)}</h2>
-      <p class="sub reveal d2">${fmt(s.sub)}</p>
+      ${opt(s.sub,`<p class="sub reveal d2">${fmt(s.sub)}</p>`)}
       <div class="trigger reveal d3"><span class="k">${fmt(s.triggerKey)}</span><span class="v">${fmt(s.trigger)}</span></div>
     </div>
   </section>`,
@@ -453,9 +456,9 @@ const T = {
   duo:(s)=>`<section class="slide light warm" id="${s.id}">
     <div class="slide-inner">
       <h2 class="section-title reveal">${fmt(s.title)}</h2>
-      <p class="section-sub reveal d1">${fmt(s.sub)}</p>
+      ${opt(s.sub,`<p class="section-sub reveal d1">${fmt(s.sub)}</p>`)}
       <div class="duo">${s.columns.map((col,i)=>`<div class="duo-col reveal d${i+2}"><h3 class="duo-h">${fmt(col.h)}</h3><dl class="defs">${col.items.map(it=>`<div class="def"><dt><span class="dot"></span>${fmt(it.t)}</dt><dd>${fmt(it.d)}</dd></div>`).join('')}</dl></div>`).join('')}</div>
-      <p class="bridge-note reveal d4">${fmt(s.bridge)}</p>
+      ${opt(s.bridge,`<p class="bridge-note reveal d4">${fmt(s.bridge)}</p>`)}
     </div>
   </section>`,
 
@@ -463,7 +466,7 @@ const T = {
     <div class="demo-inner">
       <span class="demo-badge reveal zoom"><span class="pulse"></span>${fmt(s.badge)}</span>
       <h2 class="reveal d1">${fmt(s.title)}</h2>
-      <p class="demo-sub reveal d2">${fmt(s.sub)}</p>
+      ${opt(s.sub,`<p class="demo-sub reveal d2">${fmt(s.sub)}</p>`)}
       <div class="demo-cols">
         <div class="demo-col reveal d2"><div class="h">What I'll show</div><ul>${li(s.show)}</ul></div>
         <div class="demo-col reveal d3"><div class="h">Watch for</div><ul>${li(s.watch)}</ul></div>
@@ -487,7 +490,7 @@ const T = {
   code:(s)=>`<section class="slide dark alt" id="${s.id}">
     <div class="slide-inner">
       <h2 class="section-title reveal">${fmt(s.title)}</h2>
-      <p class="section-sub reveal d1">${fmt(s.sub)}</p>
+      ${opt(s.sub,`<p class="section-sub reveal d1">${fmt(s.sub)}</p>`)}
       <div class="terminal reveal d2">
         <div class="terminal-bar"><span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span><span class="ttl">${fmt(s.termTitle)}</span></div>
         <div class="terminal-body">${s.items.map(it=>`<div class="tline"><div class="cmd"><span class="prompt">$</span> ${fmt(it.t)}</div><p>${fmt(it.d)}</p></div>`).join('')}</div>
@@ -498,7 +501,7 @@ const T = {
   guardrails:(s)=>`<section class="slide dark" id="${s.id}">
     <div class="slide-inner">
       <h2 class="section-title reveal">${fmt(s.title)}</h2>
-      <p class="section-sub reveal d1">${fmt(s.sub)}</p>
+      ${opt(s.sub,`<p class="section-sub reveal d1">${fmt(s.sub)}</p>`)}
       <div class="guards">${s.items.map((it,i)=>`<div class="g reveal d${i+2}"><h4>${fmt(it.t)}</h4><p>${fmt(it.d)}</p><div class="rail">${fmt(it.rail)}</div></div>`).join('')}</div>
       <div class="autonomy-strip reveal d5">${s.segs.map(x=>`<div class="seg">${fmt(x)}</div>`).join('')}</div>
     </div>
@@ -508,7 +511,7 @@ const T = {
     <div class="slide-inner">
       <h2 class="section-title reveal">${fmt(s.title)}</h2>
       <div class="recap-strip">${s.items.map((it,i)=>`<div class="recap-item reveal d${i+1}"><div class="rn">${fmt(it.n)}</div><div class="rv">${fmt(it.v)}</div><div class="rd">${fmt(it.d)}</div></div>`).join('')}</div>
-      <div class="callout reveal d4"><div>${fmt(s.callout)}</div></div>
+      ${opt(s.callout,`<div class="callout reveal d4"><div>${fmt(s.callout)}</div></div>`)}
       <p class="recap-foot reveal d5">${fmt(s.foot)}</p>
     </div>
   </section>`,
@@ -519,7 +522,7 @@ const T = {
       <h2 class="reveal d1">${fmt(s.title)}</h2>
       <p class="lede reveal d2">${fmt(s.lede)}</p>
       <div class="cta-row reveal d3">${s.ctas.map(c=>`<div class="cta-item"><div class="ch">${fmt(c.h)}</div><div class="cv">${fmt(c.v)}</div></div>`).join('')}</div>
-      <p class="tagline reveal d4">${fmt(s.tagline)}</p>
+      ${opt(s.tagline,`<p class="tagline reveal d4">${fmt(s.tagline)}</p>`)}
     </div>
   </section>`,
 };
