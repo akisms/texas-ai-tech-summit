@@ -27,7 +27,7 @@ window.DECK = [
     title: "From Chat to Code",
     lede:  "The three levels of AI that actually matter, and how to climb them. A hands-on journey through the Claude ecosystem.",
     name:  "Ayman Kotob",
-    role:  "Founder, Atmit Labs · _Automation and tech, made intuitive_" },
+    role:  "Founder, Atmit Labs\nProduct Marketing Leader" },
 
   // ───────── ABOUT ─────────   (set ribbon: false to hide the chip on the photo)
   { type: "about", id: "about",
