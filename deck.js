@@ -135,7 +135,7 @@ window.DECK = [
     title: "The leap: it does things *on your behalf*",
     vs: [
       { label: "Level 1", h: "Chat", d: "You ask, it answers. You take the answer and go do the work yourself." },
-      { label: "Level 2", h: "Cowork", d: "You set the outcome and cadence once. It runs the task, on schedule, with your files and tools, and reports back." }
+      { label: "Level 2", h: "Cowork", d: "You set the outcome and cadence. It runs the task, on schedule, with your files and tools, and reports back." }
     ],
     features: [
       { t: "Plugins", d: "A bundled package of connectors, skills, and agents: a complete capability you install in one move." },
@@ -148,22 +148,22 @@ window.DECK = [
     badge: "Live Demo · Level 2",
     title: "A daily LinkedIn job digest, delivered to my inbox",
     sub: "Delegating a repetitive, time-sensitive task: find relevant roles, summarize them, and email me a clean digest every morning, automatically.",
-    show: [ "Setting the outcome and cadence", "Connecting browsing plus email", "Letting it run on its own" ],
-    watch: [ "I describe the result, not the steps", "It acts across tools for me", "Zero effort once it's set up" ],
+    show: [ "Setting the outcome and cadence", "Connecting browsing plus email"],
+    watch: [ "I describe the result, not the steps", "It acts across tools for me"],
     take: "Delegation means defining the outcome once, then receiving the value forever. This is your digital twin handling the busywork." },
 
   // ───────── LEVEL 3 DIVIDER ─────────
   { type: "divider", id: "level3",
     kicker: "Level 3",
     title: "Build with *Claude Code*",
-    sub: "No coding background? No problem. Turn plain English into working tools, and unlock what that means for non-technical builders.",
+    sub: "No coding background? No problem. Turn plain English into working tools, and unlock custom apps for non-technical builders.",
     triggerKey: "Reach for it when",
     trigger: "you want something custom that lives on its own (an app, a website), or a heavy analytical job that needs real computing power." },
 
   // ───────── CLAUDE CODE (vocabulary) ─────────
   { type: "code", id: "code-concepts",
     title: "You don't write code. You point Claude at what you want.",
-    sub: "Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here's the only vocabulary you need.",
+    sub: "Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here are some terms that are helpful to know.",
     termTitle: "claude-code · your-project",
     items: [
       { t: "project folder", d: "One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place." },
@@ -176,10 +176,10 @@ window.DECK = [
   { type: "demo", id: "demo3",
     badge: "Live Demo · Level 3",
     title: "A reservation app for the masjid soccer field",
-    sub: "From plain English to a working tool: building a real booking app, no code written by me, in service of the community.",
+    sub: "From plain English to a working tool: building a real booking app, no code written by me, to make it easier to book the soccer field.",
     show: [ "Describing the app I want", "Claude writing and running it", "Approving steps along the way" ],
     watch: [ "I speak in outcomes, not code", "It handles the technical chain", "Permissions keep me in control" ],
-    take: "Building is no longer gated by knowing how to code. It's gated by knowing what you want. That's the real unlock." },
+    take: "Building is no longer gated by knowing how to code. It's gated by knowing what you want." },
 
   // ───────── GUARDRAILS ─────────
   { type: "guardrails", id: "guardrails",
@@ -187,13 +187,13 @@ window.DECK = [
     sub: "As you move up the levels, AI does more on its own. These three habits keep you in control the whole way.",
     items: [
       { t: "Mind your data", d: "Don't paste secrets, client-confidential info, or anything you wouldn't want stored. Know what's sensitive before you share it.", rail: "Rail: think before you paste" },
-      { t: "Verify the output", d: "AI can sound confident and still be wrong. It \"hallucinates.\" You finish, not it: check the facts, numbers, and claims that matter.", rail: "Rail: trust, then verify" },
+      { t: "Verify the output", d: "AI can sound confident and still be wrong. It can **hallucinate**. So make sure you review its work: check the facts, numbers, and claims that matter.", rail: "Rail: trust, then verify" },
       { t: "Use permissions", d: "The more it can act for you, the more you set boundaries. Approve big actions; let it run the safe, routine ones.", rail: "Rail: you hold the dial" }
     ],
     segs: [
-      "**Chat**answers only, low risk",
-      "**Cowork**acts for you, set boundaries",
-      "**Code**builds and runs, permission first"
+      "**Chat** answers only, low risk",
+      "**Cowork** acts for you, set boundaries",
+      "**Code** builds and runs, permission first"
     ] },
 
   // ───────── RECAP ─────────
@@ -201,8 +201,8 @@ window.DECK = [
     title: "One framework, three levels",
     items: [
       { n: "Level 1 · Chat", v: "Ask", d: "For one-off needs. Master prompting, projects, skills, and connectors." },
-      { n: "Level 2 · Cowork", v: "Delegate", d: "For repetitive, time-sensitive work. Hand off the outcome; it runs on a cadence." },
-      { n: "Level 3 · Code", v: "Build", d: "For custom tools and heavy analysis. Plain English becomes a working thing." }
+      { n: "Level 2 · Cowork", v: "Delegate", d: "For repetitive, recurring, and data-intensive work. Hand off the outcome; run on a cadence if needed." },
+      { n: "Level 3 · Code", v: "Build", d: "For custom tools and heavy analysis. Turn your prompts into code into working applications." }
     ],
     callout: "Remember the intentions and the first principles. AI is the means, not the end. Outcomes over hype. Finish, don't start. Garbage in, garbage out.",
     foot: "Now go out there and *experiment*." },
@@ -213,9 +213,9 @@ window.DECK = [
     lede: "If you want help finding where AI belongs in your work, and building it, that's exactly what Atmit Labs does.",
     ctas: [
       { h: "Talk to me", v: "hello@atmitlabs.ai" },
-      { h: "What we do", v: "AI and automation, made intuitive" },
+      { h: "What we do", v: "AI-powered automated workflows and systems" },
       { h: "Take home", v: "Pick one task this week, climb one level" }
     ],
-    tagline: "Automation and tech, made intuitive." }
+    tagline: false }
 
 ];
