@@ -118,7 +118,7 @@ window.DECK = [
     badge: "Live Demo · Level 1",
     title: "Building a Socratic learning skill",
     sub: "Teaching Claude a reusable playbook to teache me about companies I'm interested in by asking questions instead of just handing over answers.",
-    show: [ "Creating a custom Skill from scratch"],
+    show: ["Creating a custom Skill from scratch"],
     watch: [ "How it reuses across chats"],
     take: "A skill is a habit you teach once and reuse across your chats." },
 
