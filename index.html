@@ -137,6 +137,10 @@ html.present-mode .deck-error{display:none;}
 .cred-line{display:flex;gap:2rem;flex-wrap:wrap;border-top:2px solid var(--line-dark);padding-top:1.3rem;}
 .cred-line span{font-size:1rem;color:var(--gray-soft);}
 .cred-line b{font-family:'Poppins';color:var(--teal-ink);font-weight:700;}
+/* about slide without photo: text-forward statement */
+.about-solo{max-width:920px;}
+.about-solo .about-lead{font-size:clamp(2.1rem,4.4vw,3.2rem);max-width:20ch;margin-bottom:1.5rem;}
+.about-solo .about-body{font-size:1.15rem;max-width:64ch;margin-bottom:2rem;}
 
 /* ── Table of contents ── */
 .toc{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.6rem;margin-top:1.8rem;}
@@ -440,7 +444,7 @@ const T = {
     </div>
   </header>`,
 
-  about:(s)=>`<section class="slide light" id="${s.id}">
+  about:(s)=> s.photo ? `<section class="slide light" id="${s.id}">
     <div class="slide-inner"><div class="about-grid">
       <div class="about-photo reveal zoom">
         <img src="assets/headshot.jpeg" alt="${fmt(s.name||'Ayman Kotob')}">
@@ -452,6 +456,12 @@ const T = {
         <div class="cred-line reveal d3">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
       </div>
     </div></div>
+  </section>` : `<section class="slide light" id="${s.id}">
+    <div class="slide-inner about-solo">
+      <p class="about-lead reveal">${fmt(s.lead)}</p>
+      <p class="about-body reveal d1">${fmt(s.body)}</p>
+      <div class="cred-line reveal d2">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
+    </div>
   </section>`,
 
   toc:(s)=>`<section class="slide dark alt" id="${s.id}">
