@@ -224,7 +224,7 @@ window.DECK = [
     termTitle: "claude-code · your-project",
     items: [
       { t: "terminal", d: "The text-based window Claude Code works in. Instead of clicking around in apps, it types commands to get things done." },
-      { t: "CLI", d: "A tool you run by typing, like the GitHub CLI. Claude Code can install these, so it can act directly in services like GitHub, Vercel, or Stripe, no web dashboard needed." },
+      { t: "CLI", d: "A tool you run by typing, like the GitHub CLI. Claude Code can install these, so it can act directly in services like GitHub or Stripe, no web dashboard needed." },
       { t: "project folder", d: "One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place." },
       { t: "permissions", d: "You decide what Claude can do on its own versus what needs your sign-off. Your safety dial as autonomy goes up." },
       { t: "CLAUDE.md", d: "A plain-text house-rules file. Set them globally (how you like to work) and per project (what this build needs)." },
