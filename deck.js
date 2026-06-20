@@ -117,8 +117,7 @@ window.DECK = [
       { t: "Show, don't just tell", d: "Paste examples, data, a past piece in your voice. AI matches what it can see." },
       { t: "Iterate; it's a two-way conversation, not an AI-monologue", d: "The first answer is a draft. Refine it: \"tighter,\" \"more skeptical,\" \"explain it for a beginner.\"" },
       { t: "Ask for the format you want", d: "Table, bullets, email, three options. Tell it the shape of the output up front." }
-    ],
-    callout: "**Pro move:** stuck on how to ask? Ask Claude to write the prompt for you. \"Help me write a prompt that will get me…\"" },
+    ] },
 
   // ───────── PROMPT, LEVELLED UP ─────────
   { type: "ladder", id: "prompt-ladder",
