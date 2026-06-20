@@ -55,12 +55,14 @@ window.DECK = [
   // ───────── GET TO KNOW THE ROOM ─────────
   { type: "audience", id: "audience",
     title: "First, who's in the room?",
-    intro: "I want to hear from you. Two quick questions:",
+    intro: "A quick round of intros, tell me:",
     questions: [
-      "Why are you here today?",
-      "What outcome are you hoping AI helps you reach?"
-    ],
-    cue: "Shout it out, or hold the thought as we go." },
+      "Your name",
+      "Your profession",
+      "Your level of AI fluency",
+      "What you're hoping to get out of this session",
+      "An outcome you're hoping AI can help with"
+    ] },
 
   // ───────── INTENTION (the means, not the end) ─────────
   { type: "intention", id: "intention",
