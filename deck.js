@@ -61,7 +61,8 @@ window.DECK = [
       { t: "Give yourself grace", d: "You will not keep up with everything, and you don't need to. Pick what serves your goals and let the rest go." },
       { t: "Outcomes, not AI for its own sake", d: "Start from the result you want. Fall in love with the problem, not the tool." },
       { t: "Use AI to finish, not to start", d: "Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment." },
-      { t: "Garbage in, garbage out", d: "AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you." }
+      { t: "Garbage in, garbage out", d: "AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you." },
+      { t: "Don't forget what makes you human", d: "We're storytellers, with taste, discernment, judgment, and intuition. Use AI to amplify those, never to outsource them." }
     ] },
 
   // ───────── THE 3 LEVELS (MAP) ─────────
@@ -94,6 +95,22 @@ window.DECK = [
       { t: "Ask for the format you want", d: "Table, bullets, email, three options. Tell it the shape of the output up front." }
     ],
     callout: "**Pro move:** stuck on how to ask? Ask Claude to write the prompt for you. \"Help me write a prompt that will get me…\"" },
+
+  // ───────── PROMPT, LEVELLED UP ─────────
+  { type: "ladder", id: "prompt-ladder",
+    title: "Watch a prompt level up",
+    sub: "Same goal, three versions. Each tip from the last slide makes it sharper.",
+    steps: [
+      { label: "Good", tier: "good",
+        prompt: "Write a LinkedIn post about our new feature.",
+        why: "No role, no audience, no goal, no format. You'll get generic filler." },
+      { label: "Better", tier: "better",
+        prompt: "You're a B2B marketer. Announce our new scheduling feature to busy clinic owners. Goal: get them to book a demo.",
+        why: "Adds a **role**, an **audience**, and a **goal**, so it knows who it's for and what winning looks like." },
+      { label: "Best", tier: "best",
+        prompt: "…and here are two of our best-performing posts, match that voice. Lead with the pain of no-shows. Give me 3 options, each under 600 characters, with a strong first-line hook.",
+        why: "Adds **examples** to copy your voice and an exact **format**. Then **iterate**: \"make #2 punchier.\"" }
+    ] },
 
   // ───────── GET MORE OUT OF CHAT ─────────
   { type: "duo", id: "blocks",
@@ -166,6 +183,8 @@ window.DECK = [
     sub: "Claude Code lives in the terminal, so it doesn't just write code: it runs it, installs what's needed, manages versions, and deploys the whole chain. You stay the decision-maker, and nothing happens without your permission. Here are some terms that are helpful to know.",
     termTitle: "claude-code · your-project",
     items: [
+      { t: "terminal", d: "The text-based window where you type commands instead of clicking buttons. It's where Claude Code lives and does its work." },
+      { t: "CLI", d: "Command-line interface: running a tool by typing instructions instead of using a graphical app. Claude Code is one." },
       { t: "project folder", d: "One directory on your computer that holds everything you're building. Claude works inside it, so the project stays in one place." },
       { t: "permissions", d: "You decide what Claude can do on its own versus what needs your sign-off. Your safety dial as autonomy goes up." },
       { t: "CLAUDE.md", d: "A plain-text house-rules file. Set them globally (how you like to work) and per project (what this build needs)." },
@@ -204,7 +223,6 @@ window.DECK = [
       { n: "Level 2 · Cowork", v: "Delegate", d: "For repetitive, recurring, and data-intensive work. Hand off the outcome; run on a cadence if needed." },
       { n: "Level 3 · Code", v: "Build", d: "For custom tools and heavy analysis. Turn your prompts into code into working applications." }
     ],
-    callout: "Remember the intentions and the first principles. AI is the means, not the end. Outcomes over hype. Finish, don't start. Garbage in, garbage out.",
     foot: "Now go out there and *experiment*." },
 
   // ───────── CLOSING ─────────

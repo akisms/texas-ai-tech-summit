@@ -193,6 +193,17 @@ html.present-mode .deck-error{display:none;}
 .feature .fd{font-size:.96rem;line-height:1.55;color:var(--gray-soft);max-width:64ch;}
 .dark .feature .fd{color:rgba(255,255,255,0.66);}
 
+/* ── Prompt ladder (good / better / best) ── */
+.ladder{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.5rem;}
+.rung{display:grid;grid-template-columns:88px 1fr;gap:1.3rem;align-items:start;border-top:1px solid var(--line-dark);padding-top:1.1rem;}
+.rung .rung-label{font-family:'Poppins';font-weight:700;font-size:.88rem;padding:.32rem 0;text-align:center;border-radius:8px;}
+.rung.good .rung-label{background:rgba(93,107,103,0.16);color:var(--gray-soft);}
+.rung.better .rung-label{background:rgba(39,170,225,0.16);color:var(--blue-deep);}
+.rung.best .rung-label{background:var(--grad-soft);color:var(--teal-ink);}
+.rung-prompt{font-family:'JetBrains Mono';font-size:.9rem;line-height:1.5;color:#0c2a25;background:#e7efec;border-radius:10px;padding:.75rem .95rem;margin-bottom:.5rem;}
+.rung-why{font-size:.94rem;line-height:1.5;color:var(--gray-soft);}
+.rung-why b{color:var(--teal-ink);font-weight:700;}
+
 /* ── Definition list (building blocks) ── */
 .defs{margin-top:1.5rem;}
 .def{display:grid;grid-template-columns:240px 1fr;gap:2.2rem;padding:1.2rem 0;border-bottom:1px solid var(--line-dark);}
@@ -310,6 +321,13 @@ html.present-mode .reveal{opacity:1!important;transform:none!important;}
 html.present-mode .nav-links a{opacity:.4;}
 html.present-mode .nav-links a.active{opacity:1;}
 html.present-mode footer{display:none;}
+/* compression so content-dense slides fit shorter screens (e.g. 720p) in present mode */
+html.present-mode .terminal{margin-top:.5rem;}
+html.present-mode .terminal-bar{padding:.4rem 1rem;}
+html.present-mode .tline{padding:.5rem 1.1rem;}
+html.present-mode .tline .cmd{margin-bottom:.25rem;}
+html.present-mode .tline p{font-size:.85rem;line-height:1.35;}
+html.present-mode .section-sub{margin-bottom:.2rem;}
 
 /* ── Responsive ── */
 @media(max-width:900px){
@@ -318,6 +336,7 @@ html.present-mode footer{display:none;}
   .spectrum,.demo-cols,.guards,.autonomy-strip,.recap-strip,.principles,.terminal-body,.cta-row,.duo{grid-template-columns:1fr;}
   .vs-grid{grid-template-columns:1fr;}.vs-mid{justify-content:center;}
   .def{grid-template-columns:1fr;gap:.4rem;}
+  .rung{grid-template-columns:1fr;gap:.5rem;}
   .lvl-col,.demo-col,.guards .g,.cta-item{border-left:none;padding-left:0;}
   .tline{border-left:none;}
   .nav-links{display:none;}
@@ -447,6 +466,14 @@ const T = {
       <h2 class="section-title reveal">${fmt(s.title)}</h2>
       <div class="feature-list">${s.items.map((it,i)=>`<div class="feature reveal d${i+1}"><div><div class="ft">${fmt(it.t)}</div><div class="fd">${fmt(it.d)}</div></div></div>`).join('')}</div>
       ${s.callout?`<div class="callout reveal d${s.items.length+1}"><div>${fmt(s.callout)}</div></div>`:``}
+    </div>
+  </section>`,
+
+  ladder:(s)=>`<section class="slide light" id="${s.id}">
+    <div class="slide-inner">
+      <h2 class="section-title reveal">${fmt(s.title)}</h2>
+      ${opt(s.sub,`<p class="section-sub reveal d1">${fmt(s.sub)}</p>`)}
+      <div class="ladder">${s.steps.map((st,i)=>`<div class="rung ${st.tier||''} reveal d${i+1}"><div class="rung-label">${fmt(st.label)}</div><div class="rung-body"><div class="rung-prompt">${fmt(st.prompt)}</div><div class="rung-why"><b>Why:</b> ${fmt(st.why)}</div></div></div>`).join('')}</div>
     </div>
   </section>`,
 
