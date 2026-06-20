@@ -174,14 +174,14 @@ html.present-mode .deck-error{display:none;}
 
 /* ── 7 · The map / spectrum ── */
 .spectrum{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:2.2rem;border:1px solid var(--line);border-radius:18px;overflow:hidden;}
-.lvl-col{padding:1.8rem 1.7rem;border-left:1px solid var(--line);position:relative;transition:background .3s var(--ease);}
+.lvl-col{display:flex;flex-direction:column;padding:1.8rem 1.7rem;border-left:1px solid var(--line);position:relative;transition:background .3s var(--ease);}
 .lvl-col:first-child{border-left:none;}
 .lvl-col:hover{background:rgba(255,255,255,0.03);}
 .lvl-col .tag{font-family:'JetBrains Mono';font-weight:600;font-size:.74rem;letter-spacing:.04em;color:var(--green);text-transform:uppercase;margin-bottom:1rem;}
 .lvl-col .verb{font-family:'Poppins';font-weight:700;font-size:1.8rem;color:var(--white);margin-bottom:.25rem;}
 .lvl-col .prod{font-size:.92rem;color:var(--blue);font-weight:600;margin-bottom:1rem;}
 .lvl-col .desc{font-size:.94rem;line-height:1.55;color:rgba(255,255,255,0.72);margin-bottom:1rem;}
-.lvl-col .does{font-size:.86rem;color:rgba(255,255,255,0.58);border-top:1px solid var(--line);padding-top:.9rem;}
+.lvl-col .does{font-size:.86rem;color:rgba(255,255,255,0.58);border-top:1px solid var(--line);padding-top:.9rem;margin-top:auto;}
 .lvl-col .does b{color:var(--white);font-weight:600;}
 .spectrum-axis{display:flex;align-items:center;gap:1rem;margin-top:1.4rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,0.5);}
 .spectrum-axis .bar{flex:1;height:3px;background:var(--grad);border-radius:3px;}
