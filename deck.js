@@ -33,8 +33,12 @@ window.DECK = [
   { type: "about", id: "about",
     ribbon: false,
     lead: "A little about me",
-    body: "I'm Ayman Kotob, a product marketing veteran and founder of Atmit Labs. I spend my days helping lean teams put AI and automation to work, and today I want to hand you the same mental model I use, no jargon, no code required.",
-    personal: "When I'm not pontificating about AI and automation, you'll find me on the soccer field or the pickleball court.",
+    bullets: [
+      "**Product marketing veteran** and founder of **Atmit Labs**",
+      "I help **lean teams** put AI and automation to work, no jargon, no code required",
+      "When I'm not pontificating about AI and automation, I'm on the **soccer field** or the **pickleball court**"
+    ],
+    getsHeading: "What you'll get today",
     creds: [
       "**One** framework you'll keep",
       "**Zero** code required from you",

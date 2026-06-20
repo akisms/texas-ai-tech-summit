@@ -137,11 +137,19 @@ html.present-mode .deck-error{display:none;}
 .cred-line{display:flex;gap:2rem;flex-wrap:wrap;border-top:2px solid var(--line-dark);padding-top:1.3rem;}
 .cred-line span{font-size:1rem;color:var(--gray-soft);}
 .cred-line b{font-family:'Poppins';color:var(--teal-ink);font-weight:700;}
-/* about slide without photo: text-forward statement */
-.about-solo{max-width:920px;}
-.about-solo .about-lead{font-size:clamp(2.1rem,4.4vw,3.2rem);max-width:20ch;margin-bottom:1.5rem;}
-.about-solo .about-body{font-size:1.15rem;max-width:64ch;margin-bottom:1.4rem;}
-.about-personal{font-style:italic;color:var(--gray-soft);font-size:1.05rem;line-height:1.5;max-width:60ch;margin-bottom:1.9rem;}
+/* About slide — bulleted, with a little flair */
+.about-solo{max-width:940px;}
+.about-title{font-family:'Poppins';font-weight:700;font-size:clamp(2.1rem,4.4vw,3.1rem);letter-spacing:-.02em;color:#0c2a25;}
+.about-rule{width:72px;height:5px;border-radius:5px;background:var(--grad);margin:1.1rem 0 1.8rem;}
+.about-bullets{list-style:none;display:flex;flex-direction:column;gap:1rem;max-width:64ch;}
+.about-bullets li{position:relative;padding-left:1.6rem;font-size:1.14rem;line-height:1.5;color:var(--gray);}
+.about-bullets li::before{content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;border-radius:50%;background:var(--grad);}
+.about-bullets b{color:#0c2a25;font-weight:700;}
+.gets-h{font-family:'JetBrains Mono';font-weight:600;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-ink);margin-top:2rem;margin-bottom:.9rem;}
+.gets-bullets{list-style:none;display:flex;flex-wrap:wrap;gap:.7rem 2.4rem;}
+.gets-bullets li{position:relative;padding-left:1.7rem;font-size:1.08rem;color:var(--gray);}
+.gets-bullets li::before{content:"✓";position:absolute;left:0;color:var(--teal-ink);font-weight:700;}
+.gets-bullets b{font-family:'Poppins';color:var(--teal-ink);font-weight:700;}
 
 /* ── Table of contents ── */
 .toc{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.6rem;margin-top:1.8rem;}
@@ -445,27 +453,19 @@ const T = {
     </div>
   </header>`,
 
-  about:(s)=> s.photo ? `<section class="slide light" id="${s.id}">
-    <div class="slide-inner"><div class="about-grid">
-      <div class="about-photo reveal zoom">
-        <img src="assets/headshot.jpeg" alt="${fmt(s.name||'Ayman Kotob')}">
-        ${s.ribbon ? `<span class="ribbon">${fmt(s.ribbon)}</span>` : ``}
-      </div>
-      <div>
-        <p class="about-lead reveal d1">${fmt(s.lead)}</p>
-        <p class="about-body reveal d2">${fmt(s.body)}</p>
-        ${opt(s.personal,`<p class="about-personal reveal d3">${fmt(s.personal)}</p>`)}
-        <div class="cred-line reveal d4">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
-      </div>
-    </div></div>
-  </section>` : `<section class="slide light" id="${s.id}">
-    <div class="slide-inner about-solo">
-      <p class="about-lead reveal">${fmt(s.lead)}</p>
-      <p class="about-body reveal d1">${fmt(s.body)}</p>
-      ${opt(s.personal,`<p class="about-personal reveal d2">${fmt(s.personal)}</p>`)}
-      <div class="cred-line reveal d3">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
-    </div>
-  </section>`,
+  about:(s)=>{
+    const bio = `<h2 class="about-title reveal">${fmt(s.lead)}</h2>
+      <div class="about-rule reveal d1"></div>
+      <ul class="about-bullets reveal d1">${(s.bullets||[]).map(b=>`<li>${fmt(b)}</li>`).join('')}</ul>
+      ${opt(s.getsHeading,`<div class="gets-h reveal d2">${fmt(s.getsHeading)}</div>`)}
+      <ul class="gets-bullets reveal d2">${s.creds.map(c=>`<li>${fmt(c)}</li>`).join('')}</ul>`;
+    return s.photo
+      ? `<section class="slide light" id="${s.id}"><div class="slide-inner"><div class="about-grid">
+          <div class="about-photo reveal zoom"><img src="assets/headshot.jpeg" alt="${fmt(s.lead)}">${s.ribbon?`<span class="ribbon">${fmt(s.ribbon)}</span>`:``}</div>
+          <div class="about-col">${bio}</div>
+        </div></div></section>`
+      : `<section class="slide light" id="${s.id}"><div class="slide-inner about-solo">${bio}</div></section>`;
+  },
 
   toc:(s)=>`<section class="slide dark alt" id="${s.id}">
     <div class="slide-inner">
