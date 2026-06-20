@@ -318,6 +318,9 @@ html.present-mode body{overflow:hidden;}
 html.present-mode nav{border-bottom-color:transparent;box-shadow:none!important;}
 html.present-mode .slide,html.present-mode .hero{height:100vh;min-height:100vh;overflow:hidden;padding-top:5rem;padding-bottom:3rem;display:flex;flex-direction:column;justify-content:center;}
 html.present-mode .reveal{opacity:1!important;transform:none!important;}
+/* build steps: an element with class "step" stays hidden until you advance to it */
+html.present-mode .step:not(.step-shown){opacity:0!important;transform:translateY(14px)!important;}
+html.present-mode .step.step-shown{opacity:1!important;transform:none!important;transition:opacity .55s var(--ease),transform .55s var(--ease);}
 html.present-mode .nav-links a{opacity:.4;}
 html.present-mode .nav-links a.active{opacity:1;}
 html.present-mode footer{display:none;}
@@ -422,7 +425,7 @@ const T = {
     <div class="slide-inner">
       <h2 class="lead-statement reveal">${fmt(s.title)}</h2>
       <p class="prompt-q reveal d1">${fmt(s.q)}</p>
-      <p class="intention-note reveal d2">${fmt(s.note)}</p>
+      <p class="intention-note reveal d2${s.animateNote?' step':''}">${fmt(s.note)}</p>
     </div>
   </section>`,
 
@@ -608,6 +611,20 @@ function goToSlide(dir){
   const t=getSnapTargets(); const i=Math.max(0,Math.min(getCurrentSlideIndex()+dir,t.length-1));
   t[i].scrollIntoView({behavior:'smooth'}); setTimeout(updateIndicator,350);
 }
+/* advance reveals the next build step on the current slide before moving to the next slide */
+function advance(dir){
+  const cur=getSnapTargets()[getCurrentSlideIndex()];
+  if(cur){
+    if(dir>0){
+      const nextStep=cur.querySelector('.step:not(.step-shown)');
+      if(nextStep){ nextStep.classList.add('step-shown'); return; }
+    } else {
+      const shown=cur.querySelectorAll('.step.step-shown');
+      if(shown.length){ shown[shown.length-1].classList.remove('step-shown'); return; }
+    }
+  }
+  goToSlide(dir);
+}
 document.addEventListener('keydown',e=>{
   const inP=document.documentElement.classList.contains('present-mode');
   if((e.key==='p'||e.key==='P')&&!e.target.matches('input,textarea,[contenteditable="true"]')){ e.preventDefault(); togglePresent(); return; }
@@ -615,13 +632,13 @@ document.addEventListener('keydown',e=>{
   if(!inP) return;
   const next=['ArrowDown','ArrowRight','PageDown',' '].includes(e.key);
   const prev=['ArrowUp','ArrowLeft','PageUp'].includes(e.key);
-  if(next||prev){ e.preventDefault(); goToSlide(next?1:-1); }
+  if(next||prev){ e.preventDefault(); advance(next?1:-1); }
 });
 let wheelLocked=false;
 document.addEventListener('wheel',e=>{
   if(!document.documentElement.classList.contains('present-mode')) return;
   e.preventDefault(); if(wheelLocked) return; wheelLocked=true;
-  goToSlide(e.deltaY>0?1:-1); setTimeout(()=>{wheelLocked=false;},700);
+  advance(e.deltaY>0?1:-1); setTimeout(()=>{wheelLocked=false;},700);
 },{passive:false});
 window.addEventListener('scroll',()=>{ if(!document.documentElement.classList.contains('present-mode')) updateIndicator(); });
 

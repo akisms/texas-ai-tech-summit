@@ -44,6 +44,7 @@ window.DECK = [
   { type: "intention", id: "intention",
     title: "AI is the *means*, not the end.",
     q: "Quick gut-check: why are you here today? What outcome are you hoping AI helps you reach?",
+    animateNote: true,
     note: "The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back and the capabilities it unlocks." },
 
   // ───────── BISMILLAH ─────────
