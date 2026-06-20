@@ -86,7 +86,8 @@ window.DECK = [
       { t: "Outcomes, not AI for its own sake", d: "Start from the result you want. Fall in love with the problem, not the tool." },
       { t: "Use AI to finish, not to start", d: "Bring your own thinking first. Let AI sharpen, expand, and accelerate. Don't let it replace your judgment." },
       { t: "Garbage in, garbage out", d: "AI learns from what you give it. Document your context, your voice, your standards, so it can sound like you." },
-      { t: "Don't forget what makes you human", d: "We're storytellers, with taste, discernment, judgment, and intuition. Use AI to amplify those, never to outsource them." }
+      { t: "Don't forget what makes you human", d: "We're storytellers, with taste, discernment, judgment, and intuition. Use AI to amplify those, never to outsource them." },
+      { t: "Keep an open mind, keep experimenting", d: "This is the worst AI will ever be. Play with it, try things, and keep noticing what's newly possible." }
     ] },
 
   // ───────── THE 3 LEVELS (MAP) ─────────
