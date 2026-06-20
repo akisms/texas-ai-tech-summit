@@ -73,7 +73,7 @@ window.DECK = [
   // ───────── BISMILLAH ─────────
   { type: "bismillah", id: "bismillah",
     label: "So we begin with intention",
-    arabic: "بِسْمِ اللَّٰهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    arabic: "﷽",
     translit: "Bismillāh ir-Raḥmān ir-Raḥīm",
     translation: "In the name of Allah, the Most Gracious, the Most Merciful. Let's start with a conscious _bismillah_." },
 
