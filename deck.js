@@ -93,7 +93,7 @@ window.DECK = [
   // ───────── THE 3 LEVELS (MAP) ─────────
   { type: "map", id: "map",
     title: "Ask, delegate, build",
-    sub: "One framework, three levels. As you climb, AI does more on your behalf. We'll use the Claude ecosystem as the vehicle, but this mental model travels to any AI tool you'll ever use.",
+    sub: "As you move up these levels, AI takes on more of the work for you. We'll use the Claude ecosystem to show it, but the idea works with any AI tool.",
     cols: [
       { tag: "Level 1 · Chat", verb: "Ask", prod: "Claude", desc: "You ask a question, it answers. The level almost everyone already knows.", does: "**It responds.** You stay in the driver's seat." },
       { tag: "Level 2 · Cowork", verb: "Delegate", prod: "Claude Cowork", desc: "You share an outcome and a cadence; it carries out the work for you.", does: "**It acts** on your behalf." },
@@ -187,10 +187,10 @@ window.DECK = [
   // ───────── WHAT TO DELEGATE ─────────
   { type: "criteria", id: "delegate-criteria",
     title: "What's worth handing off?",
-    sub: "The best delegation candidates share three traits, and the great ones hit all three.",
+    sub: "Good things to hand off usually look like this:",
     criteria: [
-      { t: "Recurring", d: "It happens on a cadence, daily, weekly, or every time something lands. Set it up once, benefit every time." },
-      { t: "Multi-step", d: "It's a sequence, not a single ask: gather, then sort, then draft, then send." },
+      { t: "Recurring", d: "It happens on a cadence, daily, weekly, or every time something lands, so the setup keeps paying off." },
+      { t: "Multi-step", d: "It runs across several steps: gather, sort, draft, send." },
       { t: "Data-heavy", d: "It pulls from real sources, your inbox, the web, files, a sheet, and turns them into something useful." }
     ],
     examplesHeading: "Example workflows",
@@ -239,7 +239,7 @@ window.DECK = [
     sub: "From plain English to a working tool: building a real booking app, no code written by me, to make it easier to book the soccer field.",
     show: [ "Describing the app I want", "Claude writing and running it", "Approving steps along the way" ],
     watch: [ "I speak in outcomes, not code", "It handles the technical chain", "Permissions keep me in control" ],
-    take: "Building is no longer gated by knowing how to code. It's gated by knowing what you want." },
+    take: "These days, building is less about knowing how to code and more about knowing what you want to make." },
 
   // ───────── GUARDRAILS ─────────
   { type: "guardrails", id: "guardrails",
@@ -258,7 +258,7 @@ window.DECK = [
 
   // ───────── RECAP ─────────
   { type: "recap", id: "recap",
-    title: "One framework, three levels",
+    title: "When to reach for each level",
     items: [
       { n: "Level 1 · Chat", v: "Ask", d: "For one-off needs. Master prompting, projects, skills, and connectors." },
       { n: "Level 2 · Cowork", v: "Delegate", d: "For repetitive, recurring, and data-intensive work. Hand off the outcome; run on a cadence if needed." },
@@ -273,7 +273,7 @@ window.DECK = [
     ctas: [
       { h: "Talk to me", v: "hello@atmitlabs.ai" },
       { h: "What we do", v: "AI-powered automated workflows and systems" },
-      { h: "Take home", v: "Pick one task this week, climb one level" }
+      { h: "Take home", v: "Pick one task this week and try it a level up" }
     ],
     qr: { heading: "Schedule time with me", src: "assets/qr-code.png" },
     tagline: false }
