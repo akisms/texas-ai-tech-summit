@@ -320,6 +320,15 @@ html.present-mode .deck-error{display:none;}
 .cta-item .ch{font-family:'JetBrains Mono';font-weight:600;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin-bottom:.5rem;}
 .cta-item .cv{font-size:1.04rem;color:var(--white);font-weight:500;}
 .close .tagline{font-style:italic;color:var(--blue);font-size:1.08rem;}
+.qr-block{display:flex;flex-direction:column;align-items:center;gap:.7rem;margin-bottom:1.8rem;}
+.qr-h{font-family:'JetBrains Mono';font-weight:600;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--green);}
+.qr-img{width:150px;height:150px;border-radius:14px;background:#fff;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,0.35);}
+html.present-mode .qr-img{width:104px;height:104px;}
+html.present-mode .close img.logo{width:175px;margin-bottom:.9rem;}
+html.present-mode .close .lede{margin-bottom:1.3rem;}
+html.present-mode .cta-row{margin-bottom:1.3rem;}
+html.present-mode .cta-item{padding:.95rem 1.6rem;}
+html.present-mode .qr-block{margin-bottom:.6rem;}
 
 /* ── footer / indicator ── */
 footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:1.6rem 3rem;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;border-top:1px solid var(--line);flex-wrap:wrap;gap:.6rem;}
@@ -580,7 +589,8 @@ const T = {
       <h2 class="reveal d1">${fmt(s.title)}</h2>
       <p class="lede reveal d2">${fmt(s.lede)}</p>
       <div class="cta-row reveal d3">${s.ctas.map(c=>`<div class="cta-item"><div class="ch">${fmt(c.h)}</div><div class="cv">${fmt(c.v)}</div></div>`).join('')}</div>
-      ${opt(s.tagline,`<p class="tagline reveal d4">${fmt(s.tagline)}</p>`)}
+      ${s.qr?`<div class="qr-block reveal d4"><div class="qr-h">${fmt(s.qr.heading)}</div><img class="qr-img" src="${s.qr.src}" alt="QR code to schedule time"></div>`:``}
+      ${opt(s.tagline,`<p class="tagline reveal d5">${fmt(s.tagline)}</p>`)}
     </div>
   </section>`,
 };

@@ -5,3 +5,6 @@ Branding/
 # OS cruft
 .DS_Store
 **/.DS_Store
+
+# stray original (use assets/qr-code.png)
+/QR Code.png

@@ -257,6 +257,7 @@ window.DECK = [
       { h: "What we do", v: "AI-powered automated workflows and systems" },
       { h: "Take home", v: "Pick one task this week, climb one level" }
     ],
+    qr: { heading: "Schedule time with me", src: "assets/qr-code.png" },
     tagline: false }
 
 ];
