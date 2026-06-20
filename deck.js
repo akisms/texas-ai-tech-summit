@@ -32,8 +32,9 @@ window.DECK = [
   // ───────── ABOUT ─────────   (set ribbon: false to hide the chip on the photo)
   { type: "about", id: "about",
     ribbon: false,
-    lead: "I help lean teams turn AI from a buzzword into measurable ROI.",
-    body: "I'm Ayman Kotob, a product marketing veteran and the founder of Atmit Labs, a consultancy that makes automation and AI intuitive for people who don't write code. I build the workflows, tools, and systems that give small teams the leverage of much bigger ones.",
+    lead: "A little about me",
+    body: "I'm Ayman Kotob, a product marketing veteran and founder of Atmit Labs. I spend my days helping lean teams put AI and automation to work, and today I want to hand you the same mental model I use, no jargon, no code required.",
+    personal: "When I'm not pontificating about AI and automation, you'll find me on the soccer field or the pickleball court.",
     creds: [
       "**One** framework you'll keep",
       "**Zero** code required from you",

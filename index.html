@@ -140,7 +140,8 @@ html.present-mode .deck-error{display:none;}
 /* about slide without photo: text-forward statement */
 .about-solo{max-width:920px;}
 .about-solo .about-lead{font-size:clamp(2.1rem,4.4vw,3.2rem);max-width:20ch;margin-bottom:1.5rem;}
-.about-solo .about-body{font-size:1.15rem;max-width:64ch;margin-bottom:2rem;}
+.about-solo .about-body{font-size:1.15rem;max-width:64ch;margin-bottom:1.4rem;}
+.about-personal{font-style:italic;color:var(--gray-soft);font-size:1.05rem;line-height:1.5;max-width:60ch;margin-bottom:1.9rem;}
 
 /* ── Table of contents ── */
 .toc{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.6rem;margin-top:1.8rem;}
@@ -453,14 +454,16 @@ const T = {
       <div>
         <p class="about-lead reveal d1">${fmt(s.lead)}</p>
         <p class="about-body reveal d2">${fmt(s.body)}</p>
-        <div class="cred-line reveal d3">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
+        ${opt(s.personal,`<p class="about-personal reveal d3">${fmt(s.personal)}</p>`)}
+        <div class="cred-line reveal d4">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
       </div>
     </div></div>
   </section>` : `<section class="slide light" id="${s.id}">
     <div class="slide-inner about-solo">
       <p class="about-lead reveal">${fmt(s.lead)}</p>
       <p class="about-body reveal d1">${fmt(s.body)}</p>
-      <div class="cred-line reveal d2">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
+      ${opt(s.personal,`<p class="about-personal reveal d2">${fmt(s.personal)}</p>`)}
+      <div class="cred-line reveal d3">${s.creds.map(c=>`<span>${fmt(c)}</span>`).join('')}</div>
     </div>
   </section>`,
 
