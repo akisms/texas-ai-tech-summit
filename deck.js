@@ -183,6 +183,23 @@ window.DECK = [
       { t: "Runs on a cadence", d: "\"Every morning at 7,\" \"every Friday.\" Delegation that shows up without you asking." }
     ] },
 
+  // ───────── WHAT TO DELEGATE ─────────
+  { type: "criteria", id: "delegate-criteria",
+    title: "What's worth handing off?",
+    sub: "The best delegation candidates share three traits, and the great ones hit all three.",
+    criteria: [
+      { t: "Recurring", d: "It happens on a cadence, daily, weekly, or every time something lands. Set it up once, benefit every time." },
+      { t: "Multi-step", d: "It's a sequence, not a single ask: gather, then sort, then draft, then send." },
+      { t: "Data-heavy", d: "It pulls from real sources, your inbox, the web, files, a sheet, and turns them into something useful." }
+    ],
+    examplesHeading: "Example workflows",
+    examples: [
+      "A morning digest of news or job posts in your field, emailed daily",
+      "A weekly competitor or pricing scan pulled from the web into a sheet",
+      "Inbox triage: summarize new emails, label them, flag what needs you",
+      "Turn raw meeting notes into action items and follow-up drafts"
+    ] },
+
   // ───────── DEMO 2 ─────────
   { type: "demo", id: "demo2",
     badge: "Live Demo · Level 2",
