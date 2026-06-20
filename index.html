@@ -138,6 +138,20 @@ html.present-mode .deck-error{display:none;}
 .cred-line span{font-size:1rem;color:var(--gray-soft);}
 .cred-line b{font-family:'Poppins';color:var(--teal-ink);font-weight:700;}
 
+/* ── Table of contents ── */
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.6rem;margin-top:1.8rem;}
+.toc-row{display:grid;grid-template-columns:48px 1fr;gap:1rem;align-items:baseline;border-top:1px solid var(--line);padding-top:1rem;}
+.toc-n{font-family:'JetBrains Mono';font-weight:600;font-size:1rem;color:var(--green);}
+.toc-t{font-family:'Poppins';font-weight:600;font-size:1.15rem;color:var(--white);}
+.toc-d{font-size:.9rem;color:rgba(255,255,255,0.6);margin-top:.15rem;line-height:1.4;}
+
+/* ── Audience / get-to-know-the-room slide ── */
+.qlist{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.8rem;}
+.qrow{display:flex;align-items:center;gap:1.3rem;border-top:2px solid var(--line-dark);padding-top:1.1rem;}
+.qnum{font-family:'Poppins';font-weight:800;font-size:1.8rem;color:var(--teal-ink);line-height:1;flex-shrink:0;}
+.qtext{font-family:'Poppins';font-weight:600;font-size:clamp(1.2rem,2.2vw,1.6rem);color:#0c2a25;line-height:1.25;}
+.qcue{margin-top:1.6rem;font-size:1rem;color:var(--gray-soft);font-style:italic;}
+
 /* ── 4/5 · Intention + Bismillah ── */
 .lead-statement{font-size:clamp(2.1rem,4.6vw,3.2rem);font-family:'Poppins';font-weight:700;line-height:1.12;letter-spacing:-.025em;color:var(--white);margin-bottom:1.6rem;max-width:18ch;}
 .prompt-q{font-size:1.32rem;line-height:1.5;font-family:'Poppins';font-weight:500;max-width:64ch;color:rgba(255,255,255,0.9);margin-bottom:1.8rem;}
@@ -336,7 +350,7 @@ html.present-mode .section-sub{margin-bottom:.2rem;}
 @media(max-width:900px){
   .hero-inner,.about-grid{grid-template-columns:1fr;}
   .hero-art{display:none;}
-  .spectrum,.demo-cols,.guards,.autonomy-strip,.recap-strip,.principles,.terminal-body,.cta-row,.duo{grid-template-columns:1fr;}
+  .spectrum,.demo-cols,.guards,.autonomy-strip,.recap-strip,.principles,.terminal-body,.cta-row,.duo,.toc{grid-template-columns:1fr;}
   .vs-grid{grid-template-columns:1fr;}.vs-mid{justify-content:center;}
   .def{grid-template-columns:1fr;gap:.4rem;}
   .rung{grid-template-columns:1fr;gap:.5rem;}
@@ -421,11 +435,28 @@ const T = {
     </div></div>
   </section>`,
 
+  toc:(s)=>`<section class="slide dark alt" id="${s.id}">
+    <div class="slide-inner">
+      <h2 class="section-title reveal">${fmt(s.title)}</h2>
+      ${opt(s.sub,`<p class="section-sub reveal d1">${fmt(s.sub)}</p>`)}
+      <div class="toc">${s.items.map((it,i)=>`<div class="toc-row reveal d${i+1}"><span class="toc-n">${fmt(it.n)}</span><div><div class="toc-t">${fmt(it.t)}</div>${opt(it.d,`<div class="toc-d">${fmt(it.d)}</div>`)}</div></div>`).join('')}</div>
+    </div>
+  </section>`,
+
+  audience:(s)=>`<section class="slide light" id="${s.id}">
+    <div class="slide-inner">
+      <h2 class="section-title reveal">${fmt(s.title)}</h2>
+      ${opt(s.intro,`<p class="section-sub reveal d1">${fmt(s.intro)}</p>`)}
+      <div class="qlist">${s.questions.map((q,i)=>`<div class="qrow reveal d${i+2}"><span class="qnum">${i+1}</span><span class="qtext">${fmt(q)}</span></div>`).join('')}</div>
+      ${opt(s.cue,`<p class="qcue reveal d${s.questions.length+2}">${fmt(s.cue)}</p>`)}
+    </div>
+  </section>`,
+
   intention:(s)=>`<section class="slide dark" id="${s.id}">
     <div class="slide-inner">
       <h2 class="lead-statement reveal">${fmt(s.title)}</h2>
-      <p class="prompt-q reveal d1">${fmt(s.q)}</p>
-      <p class="intention-note reveal d2${s.animateNote?' step':''}">${fmt(s.note)}</p>
+      ${opt(s.q,`<p class="prompt-q reveal d1">${fmt(s.q)}</p>`)}
+      ${opt(s.note,`<p class="intention-note reveal d2${s.animateNote?' step':''}">${fmt(s.note)}</p>`)}
     </div>
   </section>`,
 

@@ -40,10 +40,31 @@ window.DECK = [
       "**Three** live demos today"
     ] },
 
-  // ───────── INTENTION ─────────
+  // ───────── TABLE OF CONTENTS ─────────
+  { type: "toc", id: "toc",
+    title: "What we'll cover",
+    items: [
+      { n: "01", t: "Intentions & the room", d: "Why we're here, and who you are" },
+      { n: "02", t: "First principles", d: "The mindset before the tools" },
+      { n: "03", t: "Level 1 · Chat", d: "Ask, and it answers" },
+      { n: "04", t: "Level 2 · Cowork", d: "Delegate, and it acts for you" },
+      { n: "05", t: "Level 3 · Code", d: "Describe it, and it builds" },
+      { n: "06", t: "Guardrails & recap", d: "Staying safe, and where to go next" }
+    ] },
+
+  // ───────── GET TO KNOW THE ROOM ─────────
+  { type: "audience", id: "audience",
+    title: "First, who's in the room?",
+    intro: "I want to hear from you. Two quick questions:",
+    questions: [
+      "Why are you here today?",
+      "What outcome are you hoping AI helps you reach?"
+    ],
+    cue: "Shout it out, or hold the thought as we go." },
+
+  // ───────── INTENTION (the means, not the end) ─────────
   { type: "intention", id: "intention",
     title: "AI is the *means*, not the end.",
-    q: "Quick gut-check: why are you here today? What outcome are you hoping AI helps you reach?",
     animateNote: true,
     note: "The ultimate intention is to be the best servants of Allah. AI is simply a **means**: leverage to serve our families, our communities, our Ummah, and humanity better. The tool is never the point. What matters is what we do with the time it gives back and the capabilities it unlocks." },
 
